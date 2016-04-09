@@ -26,3 +26,6 @@
 *.exe
 *.out
 *.app
+
+# dg_cpp specific ignore files/folder
+build
