@@ -74,6 +74,8 @@ file(
 # Demo
 add_executable(demo
 	demo/main.cpp
+	demo/scene01.cpp
+	demo/scene01.h
 )
 file(
 	COPY ${CMAKE_SOURCE_DIR}/demo/assets
@@ -87,10 +89,9 @@ target_link_libraries(demo
 set_target_properties(demo PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
 create_target_launcher(demo WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
 
-
 SOURCE_GROUP(dg_cpp REGULAR_EXPRESSION ".*/dg_cpp/.*" )
-SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
-
+SOURCE_GROUP(demo REGULAR_EXPRESSION ".*/demo/.*" )
+SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shaders$" )
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 #add_custom_command(
@@ -100,18 +101,3 @@ if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 endif (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
-
-if(WIN32)
-	# Xcode and Visual working directories for demo
-	#set_target_properties(demo PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
-	#create_target_launcher(demo WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
-
-	# Xcode and Visual working directories for start
-	#set_target_properties(start PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/start/")
-	#create_target_launcher(start WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/start/")
-
-	# create file tabs in visual studio
-	#SOURCE_GROUP(dg_cpp REGULAR_EXPRESSION ".*/dg_cpp/.*" )
-	#SOURCE_GROUP(demo REGULAR_EXPRESSION ".*/demo/.*" )
-	#SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shaders$" )
-endif(WIN32)

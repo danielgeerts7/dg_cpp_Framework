@@ -5,14 +5,14 @@
 *   - Initial commit
 */
 
-#include "Scene.h"
+#include "scene01.h"
 
 
-Scene::Scene()
+Scene01::Scene01() : Scene()
 {
 }
 
 
-Scene::~Scene()
+Scene01::~Scene01()
 {
 }
