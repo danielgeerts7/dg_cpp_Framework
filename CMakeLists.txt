@@ -57,6 +57,7 @@ add_library(dg_cpp
 	dg_cpp/camera.h
 	dg_cpp/line.cpp
 	dg_cpp/line.h
+	dg_cpp/pointx.h
 	dg_cpp/renderer.cpp
 	dg_cpp/renderer.h
 	dg_cpp/scene.cpp

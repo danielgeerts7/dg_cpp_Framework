@@ -43,17 +43,29 @@ int Renderer::InitRenderer() {
 		return -1;
 	}
 
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
-void Renderer::RenderScene(Scene * scene)
+void Renderer::RenderScene(Scene* scene)
 {
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Render every line that scene has
-	//RenderLines(NULL);
+	int size = scene->GetAllLines().size();
+	for (int i = 0; i < size; i++) {
+		Line* temp = scene->GetAllLines()[i];
+		RenderLines(temp);
+
+		if (temp != NULL) {
+			temp = NULL;
+		}
+	}
 
 	// Swap buffers
 	glfwSwapBuffers(_window);

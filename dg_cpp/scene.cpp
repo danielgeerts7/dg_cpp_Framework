@@ -16,3 +16,9 @@ Scene::Scene()
 Scene::~Scene()
 {
 }
+
+
+void Scene::addChild(Line* line)
+{
+	allLines.push_back(line);
+}
