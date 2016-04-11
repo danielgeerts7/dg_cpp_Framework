@@ -32,6 +32,7 @@ include_directories(
 	external/glfw-3.0.3/include/GLFW/
 	external/glm-0.9.7.0/
 	external/glew-1.9.0/include/
+	dg_cpp/
 	.
 )
 
@@ -39,6 +40,7 @@ set(ALL_LIBS
 	${OPENGL_LIBRARY}
 	GLFW_303
 	GLEW_190
+	dg_cpp
 )
 
 add_definitions(
@@ -49,13 +51,26 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-# Demo
-add_executable(demo
-	demo/demo.cpp
+# dg_cpp library
+add_library(dg_cpp
 	dg_cpp/shader.cpp
 	dg_cpp/camera.cpp
 	dg_cpp/texture.cpp
 )
+file(
+	COPY ${CMAKE_SOURCE_DIR}/dg_cpp/shaders
+	DESTINATION ${CMAKE_BINARY_DIR}
+)
+
+# Demo
+add_executable(demo
+	demo/demo.cpp
+)
+file(
+	COPY ${CMAKE_SOURCE_DIR}/demo/assets
+	DESTINATION ${CMAKE_BINARY_DIR}
+)
+
 target_link_libraries(demo
 	${ALL_LIBS}
 )
@@ -77,13 +92,17 @@ elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 endif (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
+if(WIN32)
+	# Xcode and Visual working directories for demo
+	#set_target_properties(demo PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
+	#create_target_launcher(demo WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
 
-# Copy assets to the build directory
-file(
-	COPY demo/assets
-	DESTINATION ${CMAKE_BINARY_DIR}
-)
-file(
-	COPY demo/shaders
-	DESTINATION ${CMAKE_BINARY_DIR}
-)
+	# Xcode and Visual working directories for start
+	#set_target_properties(start PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/start/")
+	#create_target_launcher(start WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/start/")
+
+	# create file tabs in visual studio
+	#SOURCE_GROUP(dg_cpp REGULAR_EXPRESSION ".*/dg_cpp/.*" )
+	#SOURCE_GROUP(demo REGULAR_EXPRESSION ".*/demo/.*" )
+	#SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shaders$" )
+endif(WIN32)
