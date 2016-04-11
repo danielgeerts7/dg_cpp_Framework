@@ -36,12 +36,12 @@ int main( void )
 		return -1;
 	}
 
-	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_SAMPLES, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow( window_width, window_height, "Demo", NULL, NULL);
+	window = glfwCreateWindow( window_width, window_height, "dg_cpp", NULL, NULL);
 	if( window == NULL ){
 		fprintf( stderr, "Failed to open GLFW window.\n" );
 		glfwTerminate();

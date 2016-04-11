@@ -53,9 +53,18 @@ add_definitions(
 
 # dg_cpp library
 add_library(dg_cpp
-	dg_cpp/shader.cpp
 	dg_cpp/camera.cpp
+	dg_cpp/camera.h
+	dg_cpp/line.cpp
+	dg_cpp/line.h
+	dg_cpp/renderer.cpp
+	dg_cpp/renderer.h
+	dg_cpp/scene.cpp
+	dg_cpp/scene.h
+	dg_cpp/shader.cpp
+	dg_cpp/shader.h
 	dg_cpp/texture.cpp
+	dg_cpp/texture.h
 )
 file(
 	COPY ${CMAKE_SOURCE_DIR}/dg_cpp/shaders
@@ -64,7 +73,7 @@ file(
 
 # Demo
 add_executable(demo
-	demo/demo.cpp
+	demo/main.cpp
 )
 file(
 	COPY ${CMAKE_SOURCE_DIR}/demo/assets
