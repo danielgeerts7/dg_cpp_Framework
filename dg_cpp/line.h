@@ -30,11 +30,14 @@ public:
 	~Line();
 
 	// Add a point to the points list
-	void addPoint(Point2* newPoint) { points.push_back(newPoint); }
+	void addPoint(float posX, float posY ) { points_vector.push_back(posX);  points_vector.push_back(posY);  points_vector.push_back(0.0f); }
+	
+	std::vector<GLfloat> getPoints() { return points_vector; }
+	std::vector<GLfloat> getPointsAsArray();
 
 private:
 	// List of all points
-	std::vector<Point2*> points;
+	std::vector<GLfloat> points_vector;
 };
 
 #endif /* LINE_H */

@@ -46,6 +46,8 @@ private:
 
 	GLFWwindow* _window;
 
+	GLuint vertexbuffer;
+
 	int window_width = 1280;
 	int window_height = 720;
 };
