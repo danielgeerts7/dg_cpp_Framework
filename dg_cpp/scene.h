@@ -18,8 +18,10 @@ public:
 	Scene();
 	~Scene();
 
-	void addChild(GameObject* obj);
+	virtual void UpdateScene();
 
+	void addChild(GameObject* obj);
+	GameObject* star;
 	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
 private:

@@ -103,3 +103,11 @@ Scene01::Scene01() : Scene()
 Scene01::~Scene01()
 {
 }
+
+void Scene01::Update() {
+	Scene::UpdateScene();
+
+	star->Rotation += 10;
+	int i = 0;
+	int j = i;
+}

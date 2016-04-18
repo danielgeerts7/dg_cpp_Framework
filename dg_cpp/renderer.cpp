@@ -64,6 +64,9 @@ void Renderer::RenderScene(Scene* scene)
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// Update scene
+	scene->UpdateScene();
+
 	// Render every line that scene has
 	int size = scene->GetAllGameObjects().size();
 
@@ -131,6 +134,9 @@ void Renderer::RenderLine(Line * line)
 
 
 void Renderer::CleanAndTerminateWindow() {
+	// Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 }

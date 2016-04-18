@@ -20,6 +20,8 @@ public:
 	Scene01();
 	~Scene01();
 
+	void Update();
+
 private:
 	GameObject* square;
 	GameObject* pentagram;
