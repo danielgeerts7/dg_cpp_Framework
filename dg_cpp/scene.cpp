@@ -18,8 +18,8 @@ Scene::~Scene()
 }
 
 
-void Scene::addChild(Line* line)
+void Scene::addChild(GameObject* obj)
 {
-	line->BindPoints();
-	allLines.push_back(line);
+	obj->line->BindPoints();
+	allGameObjects.push_back(obj);
 }

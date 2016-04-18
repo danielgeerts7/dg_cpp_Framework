@@ -54,11 +54,11 @@ void Renderer::RenderScene(Scene* scene)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Render every line that scene has
-	int size = scene->GetAllLines().size();
+	int size = scene->GetAllGameObjects().size();
 
 	for (int i = 0; i < size; i++) {
 		// Now render each line
-		RenderLines(scene->GetAllLines()[i]);
+		RenderLines(scene->GetAllGameObjects()[i]->line);
 	}
 
 	// Swap buffers

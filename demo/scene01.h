@@ -10,6 +10,7 @@
 
 // Include all dg_cpp classes needed in this class
 #include <dg_cpp/scene.h>
+#include <dg_cpp/gameobject.h>
 #include <dg_cpp/line.h>
 #include <dg_cpp/pointx.h>
 
@@ -20,9 +21,9 @@ public:
 	~Scene01();
 
 private:
-	Line* square;
-	Line* pentagram;
-	Line* triangle;
+	GameObject* square;
+	GameObject* pentagram;
+	GameObject* triangle;
 };
 
 #endif /* SCENE01_H */

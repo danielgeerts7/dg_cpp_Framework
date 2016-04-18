@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#include <dg_cpp/line.h>
+#include <dg_cpp/gameobject.h>
 
 class Scene
 {
@@ -18,12 +18,12 @@ public:
 	Scene();
 	~Scene();
 
-	void addChild(Line* line);
+	void addChild(GameObject* obj);
 
-	std::vector<Line*> GetAllLines() { return allLines; }
+	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
 private:
-	std::vector<Line*> allLines;
+	std::vector<GameObject*> allGameObjects;
 };
 
 #endif /* SCENE_H */
