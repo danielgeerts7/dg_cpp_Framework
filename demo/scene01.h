@@ -24,6 +24,8 @@ private:
 	GameObject* square;
 	GameObject* pentagram;
 	GameObject* triangle;
+	GameObject* circle;
+	GameObject* star;
 };
 
 #endif /* SCENE01_H */

@@ -36,7 +36,7 @@ Scene01::Scene01() : Scene()
 	pentagram->line->addPoint(new Point2(100.0f, -40.0f));
 	pentagram->line->addPoint(new Point2(-60.0f, 80.0f));
 
-	pentagram->Position = new Point2(300.0f, 300.0f);
+	pentagram->Position = new Point2(300.0f, 150.0f);
 	pentagram->Rotation = 0.0f;
 	pentagram->Scale = new Point2(1.0f, 1.0f);
 
@@ -57,6 +57,46 @@ Scene01::Scene01() : Scene()
 
 	// Add the child to the this scene
 	this->addChild(triangle);
+
+	// Creating a new Line
+	circle = new GameObject();
+
+	// Adding some points to the line, to created a star
+	circle->line->addPoint(new Point2(0.0f, -100.0f));
+	circle->line->addPoint(new Point2(75.0f, -75.0f));
+	circle->line->addPoint(new Point2(100.0f, 0.0f));
+	circle->line->addPoint(new Point2(75.0f, 75.0f));
+	circle->line->addPoint(new Point2(0.0f, 100.0f));
+	circle->line->addPoint(new Point2(-75.0f, 75.0f));
+	circle->line->addPoint(new Point2(-100.0f, 0.0f));
+	circle->line->addPoint(new Point2(-75.0f, -75.0f));
+
+	circle->Position = new Point2(900.0f, 150.0f);
+	circle->Rotation = 0.0f;
+	circle->Scale = new Point2(1.0f, 1.0f);
+
+	// Add the child to the this scene
+	this->addChild(circle);
+
+	// Creating a new Line
+	star = new GameObject();
+
+	// Adding some points to the line, to created a star
+	star->line->addPoint(new Point2(0.0f, -100.0f));
+	star->line->addPoint(new Point2(25.0f, -25.0f));
+	star->line->addPoint(new Point2(100.0f, 0.0f));
+	star->line->addPoint(new Point2(25.0f, 25.0f));
+	star->line->addPoint(new Point2(0.0f, 100.0f));
+	star->line->addPoint(new Point2(-25.0f, 25.0f));
+	star->line->addPoint(new Point2(-100.0f, 0.0f));
+	star->line->addPoint(new Point2(-25.0f, -25.0f));
+
+	star->Position = new Point2(250.0f, 550.0f);
+	star->Rotation = 0.0f;
+	star->Scale = new Point2(1.0f, 1.0f);
+
+	// Add the child to the this scene
+	this->addChild(star);
 }
 
 
