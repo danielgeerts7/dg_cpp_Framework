@@ -35,13 +35,24 @@ Renderer::Renderer()
 		fprintf(stderr, "Failed to initialize GLEW\n");
 		return;
 	}
-
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
+	
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+	// Create and compile our GLSL program from the shaders
+	// see: shader.h/cpp
+	programID = loadShaders("shaders/sprite.vert", "shaders/sprite.frag");
+	// Use our shader
+	glUseProgram(programID);
+
+	// Get a handle for our buffers
+	vertexPosition_modelspaceID = glGetAttribLocation(programID, "vertexPosition_modelspace");
+	vertexUVID = glGetAttribLocation(programID, "vertexUV");
+
+	// Get a handle for our "MVP" uniform
+	matrixID = glGetUniformLocation(programID, "MVP");
+
+	ProjectionMatrix = glm::ortho(0.0f, (float)window_width, (float)window_height, 0.0f, 0.1f, 100.0f);
 }
 
 Renderer::~Renderer()
@@ -56,9 +67,38 @@ void Renderer::RenderScene(Scene* scene)
 	// Render every line that scene has
 	int size = scene->GetAllGameObjects().size();
 
+	// Make variable ModelMatrix
+	glm::mat4 ViewMatrix = getViewMatrix();
+	glm::mat4 ModelMatrix = glm::mat4(1.0f);
+
 	for (int i = 0; i < size; i++) {
+		// Get a single GameObject
+		GameObject* gameobj = scene->GetAllGameObjects()[i];
+
+		//std::cout << gameobj->Position->x << std::endl;
+
+		// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
+		computeMatricesFromInputs(_window);
+
+		// Use our shader
+		glUseProgram(programID);
+
+		// Build the Model matrix
+		glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(gameobj->Position->x, gameobj->Position->y, 0.0f));
+		glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, gameobj->Rotation);
+		glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(gameobj->Scale->x, gameobj->Scale->y, 1.0f));
+
+		ModelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
+
+		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
+		// Send our transformation to the currently bound shader,
+		// in the "MVP" uniform
+		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
+
 		// Now render each line
-		RenderLines(scene->GetAllGameObjects()[i]->line);
+		RenderLine(gameobj->line);
+		//RenderSprite(gameobj->line);
 	}
 
 	// Swap buffers
@@ -67,24 +107,25 @@ void Renderer::RenderScene(Scene* scene)
 }
 
 
-void Renderer::RenderLines(Line * line)
+void Renderer::RenderLine(Line * line)
 {
 	// Get size of vector<points>
+	// Divide the whole size by 3 ( x,y,z )
 	int size = line->getPoints().size() / 3;
 
 	// 1rst attribute buffer : vertices
-	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(vertexPosition_modelspaceID);
 	glBindBuffer(GL_ARRAY_BUFFER, line->GetVertexbuffer());
 	glVertexAttribPointer(
-		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
+		vertexPosition_modelspaceID,	// attribute 0. No particular reason for 0, but must match the layout in the shader.
+		3,								// size
+		GL_FLOAT,						// type
+		GL_FALSE,						// normalized?
+		0,								// stride
+		(void*)0						// array buffer offset
 		);
 	// Draw the line !
-	glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; 3 vertices total -> 1 triangle
+	glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
 	glDisableVertexAttribArray(0);
 }
 

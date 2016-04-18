@@ -23,8 +23,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/transform.hpp>
 
 // Include all dg_cpp classes needed in this class
+#include <dg_cpp/shader.h>
+#include <dg_cpp/camera.h>
 #include <dg_cpp/scene.h>
 #include <dg_cpp/line.h>
 
@@ -40,13 +43,20 @@ public:
 	GLFWwindow* getCurrentWindow() { return _window; }
 
 private:
-	void RenderLines(Line* line);
+	void RenderLine(Line* line);
+	void RenderSprite(Line* sprite);
 
 	GLFWwindow* _window;
-	GLuint vertexbuffer;
 
 	int window_width = 1280;
 	int window_height = 720;
+
+	GLuint programID;
+	GLuint vertexPosition_modelspaceID;
+	GLuint vertexUVID;
+	GLuint matrixID;
+
+	glm::mat4 ProjectionMatrix;
 };
 
 #endif /* RENDERER_H */
