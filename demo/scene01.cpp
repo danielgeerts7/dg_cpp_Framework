@@ -14,10 +14,10 @@ Scene01::Scene01() : Scene()
 	line = new Line();
 
 	// Adding 4 points to the line, to created a square
-	line->addPoint(-0.5f, -0.5f);
-	line->addPoint(-0.5f, 0.5f);
-	line->addPoint(0.5f, 0.5f);
-	line->addPoint(0.5f, -0.5f);
+	line->addPoint(new Point2(-0.5f, -0.5f));
+	line->addPoint(new Point2(0.5f, -0.5f));
+	line->addPoint(new Point2(0.5f, 0.5f));
+	line->addPoint(new Point2(-0.5f, 0.5f));
 
 	// Add the child to the this scene
 	this->addChild(line);

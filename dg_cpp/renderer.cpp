@@ -10,18 +10,11 @@
 
 Renderer::Renderer()
 {
-}
-
-Renderer::~Renderer()
-{
-}
-
-int Renderer::InitRenderer() {
 	// Initialise GLFW
 	if (!glfwInit())
 	{
 		fprintf(stderr, "Failed to initialize GLFW\n");
-		return -1;
+		return;
 	}
 
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
@@ -33,14 +26,14 @@ int Renderer::InitRenderer() {
 	if (_window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		glfwTerminate();
-		return -1;
+		return;
 	}
 	glfwMakeContextCurrent(_window);
 
 	// Initialize GLEW
 	if (glewInit() != GLEW_OK) {
 		fprintf(stderr, "Failed to initialize GLEW\n");
-		return -1;
+		return;
 	}
 
 	GLuint VertexArrayID;
@@ -51,6 +44,10 @@ int Renderer::InitRenderer() {
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
+Renderer::~Renderer()
+{
+}
+
 void Renderer::RenderScene(Scene* scene)
 {
 	// Clear the screen
@@ -58,57 +55,10 @@ void Renderer::RenderScene(Scene* scene)
 
 	// Render every line that scene has
 	int size = scene->GetAllLines().size();
+
 	for (int i = 0; i < size; i++) {
-		Line* templine = scene->GetAllLines()[i];
-		std::vector<GLfloat> test = templine->getPointsAsArray();
-		int size = templine->getPointsAsArray().size();
-
-		GLfloat* arr_vec;
-
-		if (size == 6) {
-			static GLfloat vec_to_array[] = {
-				test[0], test[1], test[2],
-				test[3], test[4], test[5],
-			};
-
-			arr_vec = vec_to_array;
-		} else if (size == 9) {
-			static GLfloat vec_to_array[] = {
-				test[0], test[1], test[2],
-				test[3], test[4], test[5],
-				test[6], test[7], test[8],
-			};
-
-			arr_vec = vec_to_array;
-		} else if (size == 12) {
-			static GLfloat vec_to_array[] = {
-				test[0], test[1], test[2],
-				test[3], test[4], test[5],
-				test[6], test[7], test[8],
-				test[9], test[10], test[11],
-			};
-
-			arr_vec = vec_to_array;
-		}
-
-		static GLfloat g_vertex_buffer_data[] = {
-			-1.0f, -1.0f, 0.0f,
-			1.0f, -1.0f, 0.0f,
-			0.0f,  1.0f, 0.0f,
-		};
-
-		glGenBuffers(1, &vertexbuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(arr_vec), arr_vec, GL_STATIC_DRAW);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
 		// Now render each line
-		RenderLines(templine);
-		
-		if (templine != NULL) {
-			templine->~Line();
-			templine = NULL;
-		}
+		RenderLines(scene->GetAllLines()[i]);
 	}
 
 	// Swap buffers
@@ -119,9 +69,12 @@ void Renderer::RenderScene(Scene* scene)
 
 void Renderer::RenderLines(Line * line)
 {
+	// Get size of vector<points>
+	int size = line->getPoints().size() / 3;
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, line->GetVertexbuffer());
 	glVertexAttribPointer(
 		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
 		3,                  // size
@@ -130,8 +83,8 @@ void Renderer::RenderLines(Line * line)
 		0,                  // stride
 		(void*)0            // array buffer offset
 		);
-	// Draw the triangle !
-	glDrawArrays(GL_LINE_LOOP, 0, 9 / 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+	// Draw the line !
+	glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; 3 vertices total -> 1 triangle
 	glDisableVertexAttribArray(0);
 }
 

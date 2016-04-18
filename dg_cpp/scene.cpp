@@ -20,5 +20,6 @@ Scene::~Scene()
 
 void Scene::addChild(Line* line)
 {
+	line->BindPoints();
 	allLines.push_back(line);
 }

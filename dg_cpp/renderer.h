@@ -34,8 +34,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	int InitRenderer();
-
 	void RenderScene(Scene* scene);
 	void CleanAndTerminateWindow();
 
@@ -45,7 +43,6 @@ private:
 	void RenderLines(Line* line);
 
 	GLFWwindow* _window;
-
 	GLuint vertexbuffer;
 
 	int window_width = 1280;

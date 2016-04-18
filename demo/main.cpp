@@ -22,13 +22,6 @@ int main( void )
 	std::vector<Scene*> allScenes;
 	allScenes.push_back(scene01);
 
-	int checkIfReturn = renderer->InitRenderer();
-
-	// If InitRenderer() returns -1 then return from main and close the program
-	if (checkIfReturn == -1) {
-		return checkIfReturn;
-	}
-
 	int running = 1;
 	while (running == 1) {
 		// Update every frame the current Scene in renderer
