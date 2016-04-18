@@ -20,7 +20,7 @@ public:
 	Scene01();
 	~Scene01();
 
-	void Update();
+	void update(float deltaTime);
 
 private:
 	GameObject* square;

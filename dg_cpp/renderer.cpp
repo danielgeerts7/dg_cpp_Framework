@@ -65,7 +65,7 @@ void Renderer::RenderScene(Scene* scene)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Update scene
-	scene->UpdateScene();
+	scene->update(1.0f);
 
 	// Render every line that scene has
 	int size = scene->GetAllGameObjects().size();

@@ -18,10 +18,10 @@ public:
 	Scene();
 	~Scene();
 
-	virtual void UpdateScene();
+	virtual void update(float deltaTime);
 
 	void addChild(GameObject* obj);
-	GameObject* star;
+
 	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
 private:

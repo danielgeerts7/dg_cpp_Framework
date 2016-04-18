@@ -104,10 +104,26 @@ Scene01::~Scene01()
 {
 }
 
-void Scene01::Update() {
-	Scene::UpdateScene();
+void Scene01::update(float deltaTime) {
+	Scene::update(deltaTime);
 
-	star->Rotation += 10;
-	int i = 0;
-	int j = i;
+	star->Rotation += 0.001;
+
+	/*
+	if (pentagram->Position->x >= 500) {
+		pentagram->Position->x = 499;
+		pentagram->Position->y += 10;
+	} else if (pentagram->Position->y >= 500) {
+		pentagram->Position->y = 499;
+		pentagram->Position->x -= 10;
+	} else if (pentagram->Position->x <= 100) {
+		pentagram->Position->y = 101;
+		pentagram->Position->y -= 10;
+	} else if (pentagram->Position->y <= 100) {
+		pentagram->Position->x = 101;
+		pentagram->Position->x += 10;
+	} else {
+		pentagram->Position->x += 10;
+	}
+	*/
 }
