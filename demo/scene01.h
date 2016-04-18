@@ -20,7 +20,9 @@ public:
 	~Scene01();
 
 private:
-	Line* line;
+	Line* square;
+	Line* pentagram;
+	Line* triangle;
 };
 
 #endif /* SCENE01_H */

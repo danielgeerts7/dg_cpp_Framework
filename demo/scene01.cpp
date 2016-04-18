@@ -11,16 +11,40 @@
 Scene01::Scene01() : Scene()
 {
 	// Creating a new Line
-	line = new Line();
+	square = new Line();
 
 	// Adding 4 points to the line, to created a square
-	line->addPoint(new Point2(-0.5f, -0.5f));
-	line->addPoint(new Point2(0.5f, -0.5f));
-	line->addPoint(new Point2(0.5f, 0.5f));
-	line->addPoint(new Point2(-0.5f, 0.5f));
+	square->addPoint(new Point2(-0.5f, -0.5f));
+	square->addPoint(new Point2(0.5f, -0.5f));
+	square->addPoint(new Point2(0.5f, 0.5f));
+	square->addPoint(new Point2(-0.5f, 0.5f));
 
 	// Add the child to the this scene
-	this->addChild(line);
+	this->addChild(square);
+
+	// Creating a new Line
+	pentagram = new Line();
+
+	// Adding some points to the line, to created a pentagram
+	pentagram->addPoint(new Point2(0.0f, 0.5f));
+	pentagram->addPoint(new Point2(0.25f, -0.5f));
+	pentagram->addPoint(new Point2(-0.5f, 0.25f));
+	pentagram->addPoint(new Point2(0.5f, 0.25f));
+	pentagram->addPoint(new Point2(-0.25f, -0.5f));
+
+	// Add the child to the this scene
+	this->addChild(pentagram);
+
+	// Creating a new Line
+	triangle = new Line();
+
+	// Adding some points to the line, to created a star
+	triangle->addPoint(new Point2(-0.5f, -0.5f));
+	triangle->addPoint(new Point2(0.5f, -0.5f));
+	triangle->addPoint(new Point2(0.0f, 0.5f));
+
+	// Add the child to the this scene
+	this->addChild(triangle);
 }
 
 
