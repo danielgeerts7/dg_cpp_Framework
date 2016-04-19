@@ -100,7 +100,7 @@ void Renderer::RenderScene(Scene* scene)
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 
 		// Now render each line
-		RenderLine(gameobj->line);
+		RenderLine(gameobj);
 		//RenderSprite(gameobj->line);
 	}
 

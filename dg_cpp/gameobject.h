@@ -11,7 +11,7 @@
 #include <dg_cpp/line.h>
 #include <dg_cpp/pointx.h>
 
-class GameObject
+class GameObject : public Line
 {
 public:
 	GameObject();
@@ -20,8 +20,6 @@ public:
 	Point2* Position;
 	float Rotation;
 	Point2* Scale;
-
-	Line* line;
 };
 
 #endif /* GAMEOBJECT_H */

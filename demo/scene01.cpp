@@ -14,10 +14,10 @@ Scene01::Scene01() : Scene()
 	square = new GameObject();
 
 	// Adding 4 points to the line, to created a square
-	square->line->addPoint(new Point2(-100.0f, -100.0f));
-	square->line->addPoint(new Point2(100.0f, -100.0f));
-	square->line->addPoint(new Point2(100.0f, 100.0f));
-	square->line->addPoint(new Point2(-100.0f, 100.0f));
+	square->addPoint(new Point2(-100.0f, -100.0f));
+	square->addPoint(new Point2(100.0f, -100.0f));
+	square->addPoint(new Point2(100.0f, 100.0f));
+	square->addPoint(new Point2(-100.0f, 100.0f));
 
 	square->Position = new Point2(600.0f, 400.0f);
 	square->Rotation = 0.0f;
@@ -30,11 +30,11 @@ Scene01::Scene01() : Scene()
 	pentagram = new GameObject();
 
 	// Adding some points to the line, to created a pentagram
-	pentagram->line->addPoint(new Point2(0.0f, -100.0f));
-	pentagram->line->addPoint(new Point2(60.0f, 80.0f));
-	pentagram->line->addPoint(new Point2(-100.0f, -40.0f));
-	pentagram->line->addPoint(new Point2(100.0f, -40.0f));
-	pentagram->line->addPoint(new Point2(-60.0f, 80.0f));
+	pentagram->addPoint(new Point2(0.0f, -100.0f));
+	pentagram->addPoint(new Point2(60.0f, 80.0f));
+	pentagram->addPoint(new Point2(-100.0f, -40.0f));
+	pentagram->addPoint(new Point2(100.0f, -40.0f));
+	pentagram->addPoint(new Point2(-60.0f, 80.0f));
 
 	pentagram->Position = new Point2(300.0f, 150.0f);
 	pentagram->Rotation = 0.0f;
@@ -47,9 +47,9 @@ Scene01::Scene01() : Scene()
 	triangle = new GameObject();
 
 	// Adding some points to the line, to created a star
-	triangle->line->addPoint(new Point2(0.0f, -100.0f));
-	triangle->line->addPoint(new Point2(-100.0f, 100.0f));
-	triangle->line->addPoint(new Point2(100.0f, 100.0f));
+	triangle->addPoint(new Point2(0.0f, -100.0f));
+	triangle->addPoint(new Point2(-100.0f, 100.0f));
+	triangle->addPoint(new Point2(100.0f, 100.0f));
 
 	triangle->Position = new Point2(1000.0f, 500.0f);
 	triangle->Rotation = 0.0f;
@@ -62,14 +62,14 @@ Scene01::Scene01() : Scene()
 	circle = new GameObject();
 
 	// Adding some points to the line, to created a star
-	circle->line->addPoint(new Point2(0.0f, -100.0f));
-	circle->line->addPoint(new Point2(75.0f, -75.0f));
-	circle->line->addPoint(new Point2(100.0f, 0.0f));
-	circle->line->addPoint(new Point2(75.0f, 75.0f));
-	circle->line->addPoint(new Point2(0.0f, 100.0f));
-	circle->line->addPoint(new Point2(-75.0f, 75.0f));
-	circle->line->addPoint(new Point2(-100.0f, 0.0f));
-	circle->line->addPoint(new Point2(-75.0f, -75.0f));
+	circle->addPoint(new Point2(0.0f, -100.0f));
+	circle->addPoint(new Point2(75.0f, -75.0f));
+	circle->addPoint(new Point2(100.0f, 0.0f));
+	circle->addPoint(new Point2(75.0f, 75.0f));
+	circle->addPoint(new Point2(0.0f, 100.0f));
+	circle->addPoint(new Point2(-75.0f, 75.0f));
+	circle->addPoint(new Point2(-100.0f, 0.0f));
+	circle->addPoint(new Point2(-75.0f, -75.0f));
 
 	circle->Position = new Point2(900.0f, 150.0f);
 	circle->Rotation = 0.0f;
@@ -82,14 +82,14 @@ Scene01::Scene01() : Scene()
 	star = new GameObject();
 
 	// Adding some points to the line, to created a star
-	star->line->addPoint(new Point2(0.0f, -100.0f));
-	star->line->addPoint(new Point2(25.0f, -25.0f));
-	star->line->addPoint(new Point2(100.0f, 0.0f));
-	star->line->addPoint(new Point2(25.0f, 25.0f));
-	star->line->addPoint(new Point2(0.0f, 100.0f));
-	star->line->addPoint(new Point2(-25.0f, 25.0f));
-	star->line->addPoint(new Point2(-100.0f, 0.0f));
-	star->line->addPoint(new Point2(-25.0f, -25.0f));
+	star->addPoint(new Point2(0.0f, -100.0f));
+	star->addPoint(new Point2(25.0f, -25.0f));
+	star->addPoint(new Point2(100.0f, 0.0f));
+	star->addPoint(new Point2(25.0f, 25.0f));
+	star->addPoint(new Point2(0.0f, 100.0f));
+	star->addPoint(new Point2(-25.0f, 25.0f));
+	star->addPoint(new Point2(-100.0f, 0.0f));
+	star->addPoint(new Point2(-25.0f, -25.0f));
 
 	star->Position = new Point2(250.0f, 550.0f);
 	star->Rotation = 0.0f;

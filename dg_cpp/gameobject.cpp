@@ -8,10 +8,8 @@
 #include "gameobject.h"
 
 
-GameObject::GameObject()
+GameObject::GameObject() : Line()
 {
-	line = new Line();
-
 	Position = new Point2(0.0f, 0.0f);
 	Rotation = 0.0f;
 	Scale = new Point2(1.0f, 1.0f);

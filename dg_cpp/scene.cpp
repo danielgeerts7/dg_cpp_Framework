@@ -24,6 +24,6 @@ void Scene::update(float deltaTime)
 
 void Scene::addChild(GameObject* obj)
 {
-	obj->line->BindPoints();
+	obj->BindPoints();
 	allGameObjects.push_back(obj);
 }
