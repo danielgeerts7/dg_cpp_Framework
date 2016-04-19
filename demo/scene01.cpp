@@ -98,35 +98,32 @@ Scene01::Scene01() : Scene()
 	// Add the child to the this scene
 	this->addChild(star);
 
-	point = new Point2(0.25f, 0.0f);
+	allGameObjects.push_back(square);
+	allGameObjects.push_back(pentagram);
+	allGameObjects.push_back(triangle);
+	allGameObjects.push_back(circle);
+	allGameObjects.push_back(star);
+
+	for each (GameObject* var in allGameObjects) {
+		allBounceSpeeds.push_back(new Point2(0.2f, 0.3f));
+	}
+
+	pentagram_speed = new Point2(0.25f, 0.0f);
 }
 
 
 Scene01::~Scene01()
 {
-	if (square != NULL) {
-		delete (square);
-		square = NULL;
+	int size = allGameObjects.size();
+	for (int i = 0; i < size; i++) {
+		if (allGameObjects[i] != NULL) {
+			delete (allGameObjects[i]);
+			allGameObjects[i] = NULL;
+		}
 	}
-	if (pentagram != NULL) {
-		delete (pentagram);
-		pentagram = NULL;
-	}
-	if (triangle != NULL) {
-		delete (triangle);
-		triangle = NULL;
-	}
-	if (circle != NULL) {
-		delete (circle);
-		circle = NULL;
-	}
-	if (star != NULL) {
-		delete (star);
-		star = NULL;
-	}
-	if (point != NULL) {
-		delete (point);
-		point = NULL;
+	if (pentagram_speed != NULL) {
+		delete (pentagram_speed);
+		pentagram_speed = NULL;
 	}
 }
 
@@ -135,21 +132,24 @@ void Scene01::update(float deltaTime) {
 
 	star->Rotation += 0.001;
 
-	if (pentagram->Position->x >= 400) {
-		pentagram->Position->x = 399;
-		point = new Point2(0.0f, 0.25f);
-	} else if (pentagram->Position->y >= 400) {
-		pentagram->Position->y = 399;
-		point = new Point2(-0.25f, 0.0f);
-	} else if (pentagram->Position->x <= 150) {
-		pentagram->Position->x = 151;
-		point = new Point2(0.0f, -0.25f);
-	} else if (pentagram->Position->y <= 150) {
-		pentagram->Position->y = 151;
-		point = new Point2(0.25f, 0.0f);
-	}
+	int size = allGameObjects.size();
+	for (int i = 0; i < size; i++) {
+		if (allGameObjects[i]->Position->x >= 1280 - 100) {
+			allBounceSpeeds[i]->x = allBounceSpeeds[i]->x * -1;
+		}
+		else if (allGameObjects[i]->Position->x <= 0 + 100) {
+			allBounceSpeeds[i]->x = allBounceSpeeds[i]->x * -1;
+		}
+		else if (allGameObjects[i]->Position->y >= 720 - 100) {
+			allBounceSpeeds[i]->y = allBounceSpeeds[i]->y * -1;
+		}
+		else if (allGameObjects[i]->Position->y <= 0 + 100) {
+			allBounceSpeeds[i]->y = allBounceSpeeds[i]->y * -1;
+		}
 
-	pentagram->Position->x += point->x;
-	pentagram->Position->y += point->y;
-	pentagram->Rotation += 0.001f;
+		allGameObjects[i]->Position->x += allBounceSpeeds[i]->x;
+		allGameObjects[i]->Position->y += allBounceSpeeds[i]->y;
+
+		allGameObjects[i]->Rotation += 0.003;
+	}
 }
