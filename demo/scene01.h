@@ -28,6 +28,8 @@ private:
 	GameObject* triangle;
 	GameObject* circle;
 	GameObject* star;
+
+	Point2* point;
 };
 
 #endif /* SCENE01_H */

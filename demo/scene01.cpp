@@ -97,11 +97,37 @@ Scene01::Scene01() : Scene()
 
 	// Add the child to the this scene
 	this->addChild(star);
+
+	point = new Point2(0.25f, 0.0f);
 }
 
 
 Scene01::~Scene01()
 {
+	if (square != NULL) {
+		delete (square);
+		square = NULL;
+	}
+	if (pentagram != NULL) {
+		delete (pentagram);
+		pentagram = NULL;
+	}
+	if (triangle != NULL) {
+		delete (triangle);
+		triangle = NULL;
+	}
+	if (circle != NULL) {
+		delete (circle);
+		circle = NULL;
+	}
+	if (star != NULL) {
+		delete (star);
+		star = NULL;
+	}
+	if (point != NULL) {
+		delete (point);
+		point = NULL;
+	}
 }
 
 void Scene01::update(float deltaTime) {
@@ -109,21 +135,21 @@ void Scene01::update(float deltaTime) {
 
 	star->Rotation += 0.001;
 
-	/*
-	if (pentagram->Position->x >= 500) {
-		pentagram->Position->x = 499;
-		pentagram->Position->y += 10;
-	} else if (pentagram->Position->y >= 500) {
-		pentagram->Position->y = 499;
-		pentagram->Position->x -= 10;
-	} else if (pentagram->Position->x <= 100) {
-		pentagram->Position->y = 101;
-		pentagram->Position->y -= 10;
-	} else if (pentagram->Position->y <= 100) {
-		pentagram->Position->x = 101;
-		pentagram->Position->x += 10;
-	} else {
-		pentagram->Position->x += 10;
+	if (pentagram->Position->x >= 400) {
+		pentagram->Position->x = 399;
+		point = new Point2(0.0f, 0.25f);
+	} else if (pentagram->Position->y >= 400) {
+		pentagram->Position->y = 399;
+		point = new Point2(-0.25f, 0.0f);
+	} else if (pentagram->Position->x <= 150) {
+		pentagram->Position->x = 151;
+		point = new Point2(0.0f, -0.25f);
+	} else if (pentagram->Position->y <= 150) {
+		pentagram->Position->y = 151;
+		point = new Point2(0.25f, 0.0f);
 	}
-	*/
+
+	pentagram->Position->x += point->x;
+	pentagram->Position->y += point->y;
+	pentagram->Rotation += 0.001f;
 }
