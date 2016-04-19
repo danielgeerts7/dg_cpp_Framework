@@ -17,4 +17,12 @@ GameObject::GameObject() : Line()
 
 GameObject::~GameObject()
 {
+	if (Position != NULL) {
+		delete(Position);
+		Position = NULL;
+	}
+	if (Scale != NULL) {
+		delete(Scale);
+		Scale = NULL;
+	}
 }
