@@ -33,7 +33,7 @@ Scene01::Scene01() : Scene()
 	pentagram = new GameObject();
 
 	// Adding some points to the line, to created a pentagram
-	pentagram->addPoint(new Point2(0.0f, -100.0f));
+	pentagram->addPoint(new Point2(0.0f, -110.0f));
 	pentagram->addPoint(new Point2(60.0f, 80.0f));
 	pentagram->addPoint(new Point2(-100.0f, -40.0f));
 	pentagram->addPoint(new Point2(100.0f, -40.0f));
