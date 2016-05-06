@@ -23,6 +23,8 @@ Scene01::Scene01() : Scene()
 	square->Rotation = 0.0f;
 	square->Scale = new Point2(1.0f, 1.0f);
 
+	square->Color = new Point3(0, 255, 255);
+
 	// Add the child to the this scene
 	this->addChild(square);
 
@@ -40,6 +42,8 @@ Scene01::Scene01() : Scene()
 	pentagram->Rotation = 0.0f;
 	pentagram->Scale = new Point2(1.0f, 1.0f);
 
+	pentagram->Color = new Point3(255, 255, 0);
+
 	// Add the child to the this scene
 	this->addChild(pentagram);
 
@@ -54,6 +58,8 @@ Scene01::Scene01() : Scene()
 	triangle->Position = new Point2(1000.0f, 500.0f);
 	triangle->Rotation = 0.0f;
 	triangle->Scale = new Point2(1.0f, 1.0f);
+
+	triangle->Color = new Point3(0, 0, 255);
 
 	// Add the child to the this scene
 	this->addChild(triangle);
@@ -75,6 +81,8 @@ Scene01::Scene01() : Scene()
 	circle->Rotation = 0.0f;
 	circle->Scale = new Point2(1.0f, 1.0f);
 
+	circle->Color = new Point3(0, 255, 0);
+
 	// Add the child to the this scene
 	this->addChild(circle);
 
@@ -94,6 +102,8 @@ Scene01::Scene01() : Scene()
 	star->Position = new Point2(250.0f, 550.0f);
 	star->Rotation = 0.0f;
 	star->Scale = new Point2(1.0f, 1.0f);
+
+	star->Color = new Point3(255, 0, 0);
 
 	// Add the child to the this scene
 	this->addChild(star);
