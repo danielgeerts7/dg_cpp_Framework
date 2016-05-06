@@ -130,8 +130,6 @@ Scene01::~Scene01()
 void Scene01::update(float deltaTime) {
 	Scene::update(deltaTime);
 
-	star->Rotation += 0.001;
-
 	int size = allGameObjects.size();
 	for (int i = 0; i < size; i++) {
 		if (allGameObjects[i]->Position->x >= 1280 - 100) {

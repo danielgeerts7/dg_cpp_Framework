@@ -74,17 +74,15 @@ void Renderer::RenderScene(Scene* scene)
 	glm::mat4 ViewMatrix = getViewMatrix();
 	glm::mat4 ModelMatrix = glm::mat4(1.0f);
 
+	// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
+	computeMatricesFromInputs(_window);
+
+	// Use our shader
+	glUseProgram(programID);
+
 	for (int i = 0; i < size; i++) {
 		// Get a single GameObject
 		GameObject* gameobj = scene->GetAllGameObjects()[i];
-
-		//std::cout << gameobj->Position->x << std::endl;
-
-		// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
-		computeMatricesFromInputs(_window);
-
-		// Use our shader
-		glUseProgram(programID);
 
 		// Build the Model matrix
 		glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(gameobj->Position->x, gameobj->Position->y, 0.0f));
@@ -101,7 +99,6 @@ void Renderer::RenderScene(Scene* scene)
 
 		// Now render each line
 		RenderLine(gameobj);
-		//RenderSprite(gameobj->line);
 	}
 
 	// Swap buffers
