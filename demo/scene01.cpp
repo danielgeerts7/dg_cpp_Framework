@@ -24,6 +24,7 @@ Scene01::Scene01() : Scene()
 	square->Scale = new Point2(1.0f, 1.0f);
 
 	square->Color = new Point3(0, 255, 255);
+	square->filled = true;
 
 	// Add the child to the this scene
 	this->addChild(square);
@@ -43,6 +44,7 @@ Scene01::Scene01() : Scene()
 	pentagram->Scale = new Point2(1.0f, 1.0f);
 
 	pentagram->Color = new Point3(255, 255, 0);
+	pentagram->filled = false;
 
 	// Add the child to the this scene
 	this->addChild(pentagram);
@@ -60,6 +62,7 @@ Scene01::Scene01() : Scene()
 	triangle->Scale = new Point2(1.0f, 1.0f);
 
 	triangle->Color = new Point3(0, 0, 255);
+	triangle->filled = true;
 
 	// Add the child to the this scene
 	this->addChild(triangle);
@@ -82,6 +85,7 @@ Scene01::Scene01() : Scene()
 	circle->Scale = new Point2(1.0f, 1.0f);
 
 	circle->Color = new Point3(0, 255, 0);
+	circle->filled = false;
 
 	// Add the child to the this scene
 	this->addChild(circle);
@@ -104,6 +108,7 @@ Scene01::Scene01() : Scene()
 	star->Scale = new Point2(1.0f, 1.0f);
 
 	star->Color = new Point3(255, 0, 0);
+	star->filled = false;
 
 	// Add the child to the this scene
 	this->addChild(star);
@@ -115,10 +120,8 @@ Scene01::Scene01() : Scene()
 	allGameObjects.push_back(star);
 
 	for each (GameObject* var in allGameObjects) {
-		allBounceSpeeds.push_back(new Point2(0.2f, 0.3f));
+		allBounceSpeeds.push_back(new Point2(0.15f, 0.2f));
 	}
-
-	pentagram_speed = new Point2(0.25f, 0.0f);
 }
 
 
@@ -130,10 +133,6 @@ Scene01::~Scene01()
 			delete (allGameObjects[i]);
 			allGameObjects[i] = NULL;
 		}
-	}
-	if (pentagram_speed != NULL) {
-		delete (pentagram_speed);
-		pentagram_speed = NULL;
 	}
 }
 
@@ -158,6 +157,6 @@ void Scene01::update(float deltaTime) {
 		allGameObjects[i]->Position->x += allBounceSpeeds[i]->x;
 		allGameObjects[i]->Position->y += allBounceSpeeds[i]->y;
 
-		allGameObjects[i]->Rotation += 0.003;
+		allGameObjects[i]->Rotation += 0.002;
 	}
 }

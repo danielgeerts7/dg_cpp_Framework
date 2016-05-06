@@ -37,6 +37,8 @@ public:
 
 	void BindPoints();
 
+	bool filled;
+
 private:
 	// List of all points
 	std::vector<GLfloat> points_vector;

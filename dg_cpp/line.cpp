@@ -10,6 +10,8 @@
 
 Line::Line()
 {
+	// Set filled to false (now only render the line)
+	filled = false;
 }
 
 

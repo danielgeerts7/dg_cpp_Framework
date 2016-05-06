@@ -128,8 +128,14 @@ void Renderer::RenderLine(Line * line)
 		0,								// stride
 		(void*)0						// array buffer offset
 		);
-	// Draw the line !
-	glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
+	
+	if (line->filled == false) {
+		// Draw only a line !
+		glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
+	} else {
+		// Draw a filled object from line !
+		glDrawArrays(GL_POLYGON, 0, size); // Starting from vertex 0; size is the size of points that the line has
+	}
 	glDisableVertexAttribArray(0);
 }
 

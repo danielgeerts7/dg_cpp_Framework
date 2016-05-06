@@ -14,6 +14,7 @@ GameObject::GameObject() : Line()
 	Rotation = 0.0f;
 	Scale = new Point2(1.0f, 1.0f);
 
+	// Set (default) color to white
 	Color = new Point3(255, 255, 255);
 }
 
