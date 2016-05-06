@@ -51,6 +51,7 @@ Renderer::Renderer()
 
 	// Get a handle for our "MVP" uniform
 	matrixID = glGetUniformLocation(programID, "MVP");
+	blendColorID = glGetUniformLocation(programID, "blendColor"); // blendColor uniform in fragment shader
 
 	ProjectionMatrix = glm::ortho(0.0f, (float)window_width, (float)window_height, 0.0f, 0.1f, 100.0f);
 }
@@ -96,6 +97,9 @@ void Renderer::RenderScene(Scene* scene)
 		// Send our transformation to the currently bound shader,
 		// in the "MVP" uniform
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
+
+		// _blendColorID
+		glUniform4f(blendColorID, (float)gameobj->Color->x / 255.0f, (float)gameobj->Color->y / 255.0f, (float)gameobj->Color->z / 255.0f, 1.0f);
 
 		// Now render each line
 		RenderLine(gameobj);

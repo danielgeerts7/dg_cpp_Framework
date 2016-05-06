@@ -44,7 +44,6 @@ public:
 
 private:
 	void RenderLine(Line* line);
-	void RenderSprite(Line* sprite);
 
 	GLFWwindow* _window;
 
@@ -55,6 +54,8 @@ private:
 	GLuint vertexPosition_modelspaceID;
 	GLuint vertexUVID;
 	GLuint matrixID;
+
+	GLuint blendColorID;
 
 	glm::mat4 ProjectionMatrix;
 };
