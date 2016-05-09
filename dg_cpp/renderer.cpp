@@ -87,9 +87,9 @@ void Renderer::RenderScene(Scene* scene)
 		GameObject* gameobj = scene->GetAllGameObjects()[i];
 
 		// Build the Model matrix
-		glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(gameobj->Position->x, gameobj->Position->y, 0.0f));
+		glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(gameobj->Position.x, gameobj->Position.y, 0.0f));
 		glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, gameobj->Rotation);
-		glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(gameobj->Scale->x, gameobj->Scale->y, 1.0f));
+		glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(gameobj->Scale.x, gameobj->Scale.y, 1.0f));
 
 		ModelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
@@ -100,7 +100,7 @@ void Renderer::RenderScene(Scene* scene)
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 
 		// _blendColorID
-		glUniform4f(blendColorID, (float)gameobj->Color->x / 255.0f, (float)gameobj->Color->y / 255.0f, (float)gameobj->Color->z / 255.0f, 1.0f);
+		glUniform4f(blendColorID, (float)gameobj->Color.x / 255.0f, (float)gameobj->Color.y / 255.0f, (float)gameobj->Color.z / 255.0f, 1.0f);
 
 		// Now render each line
 		RenderLine(gameobj);

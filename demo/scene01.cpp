@@ -14,16 +14,16 @@ Scene01::Scene01() : Scene()
 	square = new GameObject();
 
 	// Adding 4 points to the line, to created a square
-	square->addPoint(new Point2(-100.0f, -100.0f));
-	square->addPoint(new Point2(100.0f, -100.0f));
-	square->addPoint(new Point2(100.0f, 100.0f));
-	square->addPoint(new Point2(-100.0f, 100.0f));
+	square->addPoint(Point2(-100.0f, -100.0f));
+	square->addPoint(Point2(100.0f, -100.0f));
+	square->addPoint(Point2(100.0f, 100.0f));
+	square->addPoint(Point2(-100.0f, 100.0f));
 
-	square->Position = new Point2(600.0f, 400.0f);
+	square->Position = Point2(600.0f, 400.0f);
 	square->Rotation = 0.0f;
-	square->Scale = new Point2(1.0f, 1.0f);
+	square->Scale = Point2(1.0f, 1.0f);
 
-	square->Color = new Point3(0, 255, 255);
+	square->Color = Point3(0, 255, 255);
 	square->filled = true;
 
 	// Add the child to the this scene
@@ -33,17 +33,17 @@ Scene01::Scene01() : Scene()
 	pentagram = new GameObject();
 
 	// Adding some points to the line, to created a pentagram
-	pentagram->addPoint(new Point2(0.0f, -110.0f));
-	pentagram->addPoint(new Point2(60.0f, 80.0f));
-	pentagram->addPoint(new Point2(-100.0f, -40.0f));
-	pentagram->addPoint(new Point2(100.0f, -40.0f));
-	pentagram->addPoint(new Point2(-60.0f, 80.0f));
+	pentagram->addPoint(Point2(0.0f, -110.0f));
+	pentagram->addPoint(Point2(60.0f, 80.0f));
+	pentagram->addPoint(Point2(-100.0f, -40.0f));
+	pentagram->addPoint(Point2(100.0f, -40.0f));
+	pentagram->addPoint(Point2(-60.0f, 80.0f));
 
-	pentagram->Position = new Point2(300.0f, 150.0f);
+	pentagram->Position = Point2(300.0f, 150.0f);
 	pentagram->Rotation = 0.0f;
-	pentagram->Scale = new Point2(1.0f, 1.0f);
+	pentagram->Scale = Point2(1.0f, 1.0f);
 
-	pentagram->Color = new Point3(255, 255, 0);
+	pentagram->Color = Point3(255, 255, 0);
 	pentagram->filled = false;
 
 	// Add the child to the this scene
@@ -53,15 +53,15 @@ Scene01::Scene01() : Scene()
 	triangle = new GameObject();
 
 	// Adding some points to the line, to created a star
-	triangle->addPoint(new Point2(0.0f, -100.0f));
-	triangle->addPoint(new Point2(-100.0f, 100.0f));
-	triangle->addPoint(new Point2(100.0f, 100.0f));
+	triangle->addPoint(Point2(0.0f, -100.0f));
+	triangle->addPoint(Point2(-100.0f, 100.0f));
+	triangle->addPoint(Point2(100.0f, 100.0f));
 
-	triangle->Position = new Point2(1000.0f, 500.0f);
+	triangle->Position = Point2(1000.0f, 500.0f);
 	triangle->Rotation = 0.0f;
-	triangle->Scale = new Point2(1.0f, 1.0f);
+	triangle->Scale = Point2(1.0f, 1.0f);
 
-	triangle->Color = new Point3(0, 0, 255);
+	triangle->Color = Point3(0, 0, 255);
 	triangle->filled = true;
 
 	// Add the child to the this scene
@@ -71,20 +71,20 @@ Scene01::Scene01() : Scene()
 	circle = new GameObject();
 
 	// Adding some points to the line, to created a star
-	circle->addPoint(new Point2(0.0f, -100.0f));
-	circle->addPoint(new Point2(75.0f, -75.0f));
-	circle->addPoint(new Point2(100.0f, 0.0f));
-	circle->addPoint(new Point2(75.0f, 75.0f));
-	circle->addPoint(new Point2(0.0f, 100.0f));
-	circle->addPoint(new Point2(-75.0f, 75.0f));
-	circle->addPoint(new Point2(-100.0f, 0.0f));
-	circle->addPoint(new Point2(-75.0f, -75.0f));
+	circle->addPoint(Point2(0.0f, -100.0f));
+	circle->addPoint(Point2(75.0f, -75.0f));
+	circle->addPoint(Point2(100.0f, 0.0f));
+	circle->addPoint(Point2(75.0f, 75.0f));
+	circle->addPoint(Point2(0.0f, 100.0f));
+	circle->addPoint(Point2(-75.0f, 75.0f));
+	circle->addPoint(Point2(-100.0f, 0.0f));
+	circle->addPoint(Point2(-75.0f, -75.0f));
 
-	circle->Position = new Point2(900.0f, 150.0f);
+	circle->Position = Point2(900.0f, 150.0f);
 	circle->Rotation = 0.0f;
-	circle->Scale = new Point2(1.0f, 1.0f);
+	circle->Scale = Point2(1.0f, 1.0f);
 
-	circle->Color = new Point3(0, 255, 0);
+	circle->Color = Point3(0, 255, 0);
 	circle->filled = false;
 
 	// Add the child to the this scene
@@ -94,20 +94,20 @@ Scene01::Scene01() : Scene()
 	star = new GameObject();
 
 	// Adding some points to the line, to created a star
-	star->addPoint(new Point2(0.0f, -100.0f));
-	star->addPoint(new Point2(25.0f, -25.0f));
-	star->addPoint(new Point2(100.0f, 0.0f));
-	star->addPoint(new Point2(25.0f, 25.0f));
-	star->addPoint(new Point2(0.0f, 100.0f));
-	star->addPoint(new Point2(-25.0f, 25.0f));
-	star->addPoint(new Point2(-100.0f, 0.0f));
-	star->addPoint(new Point2(-25.0f, -25.0f));
+	star->addPoint(Point2(0.0f, -100.0f));
+	star->addPoint(Point2(25.0f, -25.0f));
+	star->addPoint(Point2(100.0f, 0.0f));
+	star->addPoint(Point2(25.0f, 25.0f));
+	star->addPoint(Point2(0.0f, 100.0f));
+	star->addPoint(Point2(-25.0f, 25.0f));
+	star->addPoint(Point2(-100.0f, 0.0f));
+	star->addPoint(Point2(-25.0f, -25.0f));
 
-	star->Position = new Point2(250.0f, 550.0f);
+	star->Position = Point2(250.0f, 550.0f);
 	star->Rotation = 0.0f;
-	star->Scale = new Point2(1.0f, 1.0f);
+	star->Scale = Point2(1.0f, 1.0f);
 
-	star->Color = new Point3(255, 0, 0);
+	star->Color = Point3(255, 0, 0);
 	star->filled = false;
 
 	// Add the child to the this scene
@@ -120,20 +120,25 @@ Scene01::Scene01() : Scene()
 	allGameObjects.push_back(star);
 
 	for each (GameObject* var in allGameObjects) {
-		allBounceSpeeds.push_back(new Point2(0.15f, 0.2f));
+		allBounceSpeeds.push_back(Point2(0.15f, 0.2f));
 	}
 }
 
 
 Scene01::~Scene01()
 {
-	int size = allGameObjects.size();
-	for (int i = 0; i < size; i++) {
+	// Delete and clear the 'allGameObjects' Vector
+	int allGameObjsize = allGameObjects.size();
+	for (int i = 0; i < allGameObjsize; i++) {
 		if (allGameObjects[i] != NULL) {
 			delete (allGameObjects[i]);
 			allGameObjects[i] = NULL;
 		}
 	}
+	allGameObjects.clear();
+
+	// Only need to clear the 'allBounceSpeeds' Vector
+	allBounceSpeeds.clear();
 }
 
 void Scene01::update(float deltaTime) {
@@ -141,21 +146,21 @@ void Scene01::update(float deltaTime) {
 
 	int size = allGameObjects.size();
 	for (int i = 0; i < size; i++) {
-		if (allGameObjects[i]->Position->x >= 1280 - 100) {
-			allBounceSpeeds[i]->x = allBounceSpeeds[i]->x * -1;
+		if (allGameObjects[i]->Position.x >= 1280 - 100) {
+			allBounceSpeeds[i].x = allBounceSpeeds[i].x * -1;
 		}
-		else if (allGameObjects[i]->Position->x <= 0 + 100) {
-			allBounceSpeeds[i]->x = allBounceSpeeds[i]->x * -1;
+		else if (allGameObjects[i]->Position.x <= 0 + 100) {
+			allBounceSpeeds[i].x = allBounceSpeeds[i].x * -1;
 		}
-		else if (allGameObjects[i]->Position->y >= 720 - 100) {
-			allBounceSpeeds[i]->y = allBounceSpeeds[i]->y * -1;
+		else if (allGameObjects[i]->Position.y >= 720 - 100) {
+			allBounceSpeeds[i].y = allBounceSpeeds[i].y * -1;
 		}
-		else if (allGameObjects[i]->Position->y <= 0 + 100) {
-			allBounceSpeeds[i]->y = allBounceSpeeds[i]->y * -1;
+		else if (allGameObjects[i]->Position.y <= 0 + 100) {
+			allBounceSpeeds[i].y = allBounceSpeeds[i].y * -1;
 		}
 
-		allGameObjects[i]->Position->x += allBounceSpeeds[i]->x;
-		allGameObjects[i]->Position->y += allBounceSpeeds[i]->y;
+		allGameObjects[i]->Position.x += allBounceSpeeds[i].x;
+		allGameObjects[i]->Position.y += allBounceSpeeds[i].y;
 
 		allGameObjects[i]->Rotation += 0.002;
 	}

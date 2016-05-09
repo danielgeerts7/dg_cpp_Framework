@@ -30,7 +30,7 @@ public:
 	~Line();
 
 	// Add a point to the points list
-	void addPoint(Point2* point) { points_vector.push_back(point->x);  points_vector.push_back(point->y);  points_vector.push_back(0.0f); }
+	void addPoint(Point2 point) { points_vector.push_back(point.x);  points_vector.push_back(point.y);  points_vector.push_back(0.0f); }
 	
 	std::vector<GLfloat> getPoints() { return points_vector; }
 	GLuint GetVertexbuffer() { return vertexbuffer; }

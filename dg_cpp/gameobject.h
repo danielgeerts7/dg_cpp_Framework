@@ -17,11 +17,11 @@ public:
 	GameObject();
 	~GameObject();
 
-	Point2* Position;
+	Point2 Position;
 	float Rotation;
-	Point2* Scale;
+	Point2 Scale;
 
-	Point3* Color;
+	Point3 Color;
 };
 
 #endif /* GAMEOBJECT_H */

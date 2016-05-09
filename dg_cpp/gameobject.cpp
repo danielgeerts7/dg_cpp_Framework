@@ -10,22 +10,14 @@
 
 GameObject::GameObject() : Line()
 {
-	Position = new Point2(0.0f, 0.0f);
+	Position = Point2(0.0f, 0.0f);
 	Rotation = 0.0f;
-	Scale = new Point2(1.0f, 1.0f);
+	Scale = Point2(1.0f, 1.0f);
 
 	// Set (default) color to white
-	Color = new Point3(255, 255, 255);
+	Color = Point3(255, 255, 255);
 }
 
 GameObject::~GameObject()
 {
-	if (Position != NULL) {
-		delete(Position);
-		Position = NULL;
-	}
-	if (Scale != NULL) {
-		delete(Scale);
-		Scale = NULL;
-	}
 }

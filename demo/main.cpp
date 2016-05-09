@@ -14,7 +14,7 @@
 // Include all demo classes needed in this class
 #include <demo/scene01.h>
 
-int main( void )
+int main(void)
 {
 	Renderer* renderer = new Renderer();
 	Scene* scene01 = new Scene01();
@@ -35,6 +35,19 @@ int main( void )
 
 	// Clean and Terminate the screen
 	renderer->CleanAndTerminateWindow();
+
+	if (renderer != NULL) {
+		delete(renderer);
+		renderer = NULL;
+	}
+
+	int sceneSize = allScenes.size();
+	for (int i = 0; i < sceneSize; i++) {
+		if (allScenes[i] != NULL) {
+			delete(allScenes[i]);
+			allScenes[i] = NULL;
+		}
+	}
 
 	return 0;
 }

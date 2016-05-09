@@ -30,7 +30,7 @@ private:
 	GameObject* star;
 
 	std::vector<GameObject*> allGameObjects;
-	std::vector<Point2*> allBounceSpeeds;
+	std::vector<Point2> allBounceSpeeds;
 };
 
 #endif /* SCENE01_H */
