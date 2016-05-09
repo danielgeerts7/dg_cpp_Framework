@@ -17,9 +17,12 @@ Line::Line()
 
 Line::~Line()
 {
+	glDeleteBuffers(1, &vertexbuffer);
 }
 
 void Line::BindPoints() {
+	glDeleteBuffers(1, &vertexbuffer);
+
 	int size = this->getPoints().size();
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
