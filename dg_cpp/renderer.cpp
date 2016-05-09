@@ -18,6 +18,7 @@ Renderer::Renderer()
 	}
 
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
+	glEnable(GL_MULTISAMPLE); // Enable antialiasing just to be sure
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2); // OpenGL 2 version
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
@@ -128,7 +129,8 @@ void Renderer::RenderLine(Line * line)
 		0,								// stride
 		(void*)0						// array buffer offset
 		);
-	
+
+	// Check if line needs to be filled or not
 	if (line->filled == false) {
 		// Draw only a line !
 		glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
