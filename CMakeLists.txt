@@ -32,6 +32,7 @@ include_directories(
 	external/glfw-3.0.3/include/GLFW/
 	external/glm-0.9.7.0/
 	external/glew-1.9.0/include/
+	external/Box2D/
 	dg_cpp/
 	.
 )
@@ -41,6 +42,7 @@ set(ALL_LIBS
 	GLFW_303
 	GLEW_190
 	dg_cpp
+	Box2D
 )
 
 add_definitions(
@@ -77,6 +79,8 @@ file(
 # Demo
 add_executable(demo
 	demo/main.cpp
+	demo/box2ddemo.cpp
+	demo/box2ddemo.h
 	demo/scene01.cpp
 	demo/scene01.h
 )
@@ -84,6 +88,25 @@ file(
 	COPY ${CMAKE_SOURCE_DIR}/demo/assets
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
+
+if(UNIX)
+	set(BOX2D_INSTALL_BY_DEFAULT ON)
+else(UNIX)
+	set(BOX2D_INSTALL_BY_DEFAULT OFF)
+endif(UNIX)
+
+option(BOX2D_INSTALL "Install Box2D libs, includes, and CMake scripts" ${BOX2D_INSTALL_BY_DEFAULT})
+option(BOX2D_INSTALL_DOC "Install Box2D documentation" OFF)
+option(BOX2D_BUILD_SHARED "Build Box2D shared libraries" OFF)
+option(BOX2D_BUILD_STATIC "Build Box2D static libraries" ON)
+option(BOX2D_BUILD_EXAMPLES "Build Box2D examples" ON)
+
+set(BOX2D_VERSION 2.3.2)
+set(LIB_INSTALL_DIR lib${LIB_SUFFIX})
+
+# The Box2D library.
+add_subdirectory(external/Box2D)
+
 
 target_link_libraries(demo
 	${ALL_LIBS}
