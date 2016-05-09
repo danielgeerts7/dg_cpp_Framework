@@ -23,5 +23,5 @@ void Line::BindPoints() {
 	int size = this->getPoints().size();
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(this->getPoints()[0]) * size, reinterpret_cast<GLvoid*>(&this->getPoints()[0]), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(this->getPoints()[0]) * size, &this->getPoints()[0], GL_STATIC_DRAW);
 }
