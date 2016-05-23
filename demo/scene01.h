@@ -29,8 +29,7 @@ private:
 	GameObject* circle;
 	GameObject* star;
 
-	std::vector<GameObject*> allGameObjects;
-	std::vector<Point2> allBounceSpeeds;
+	std::vector<GameObject*> allLocalGameObjects;
 };
 
 #endif /* SCENE01_H */

@@ -92,6 +92,6 @@ void Box2Ddemo::TestBox2D() {
 	std::cout << "" << std::endl;
 	std::cout << "" << std::endl;
 	std::cout << "Box2D works fine!" << std::endl;
-	std::cout << "Press ENTER to exit" << std::endl;
+	std::cout << "Press ENTER to exit! ";
 	std::cin.get();
 }

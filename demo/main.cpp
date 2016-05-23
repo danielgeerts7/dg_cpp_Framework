@@ -18,10 +18,10 @@
 int main(void)
 {
 	//Check if demo works, press ESC to kill the application
-	Box2Ddemo demoTest;
-	demoTest.TestBox2D();
+	//Box2Ddemo demoTest;
+	//demoTest.TestBox2D();
 
-	/*
+	
 	Renderer* renderer = new Renderer();
 	Scene* scene01 = new Scene01();
 
@@ -54,8 +54,6 @@ int main(void)
 			allScenes[i] = NULL;
 		}
 	}
-
-	*/
 
 	return 0;
 }

@@ -113,55 +113,27 @@ Scene01::Scene01() : Scene()
 	// Add the child to the this scene
 	this->addChild(star);
 
-	allGameObjects.push_back(square);
-	allGameObjects.push_back(pentagram);
-	allGameObjects.push_back(triangle);
-	allGameObjects.push_back(circle);
-	allGameObjects.push_back(star);
-
-	for each (GameObject* var in allGameObjects) {
-		allBounceSpeeds.push_back(Point2(0.15f, 0.2f));
-	}
+	allLocalGameObjects.push_back(square);
+	allLocalGameObjects.push_back(pentagram);
+	allLocalGameObjects.push_back(triangle);
+	allLocalGameObjects.push_back(circle);
+	allLocalGameObjects.push_back(star);
 }
 
 
 Scene01::~Scene01()
 {
 	// Delete and clear the 'allGameObjects' Vector
-	int allGameObjsize = allGameObjects.size();
+	int allGameObjsize = allLocalGameObjects.size();
 	for (int i = 0; i < allGameObjsize; i++) {
-		if (allGameObjects[i] != NULL) {
-			delete (allGameObjects[i]);
-			allGameObjects[i] = NULL;
+		if (allLocalGameObjects[i] != NULL) {
+			delete (allLocalGameObjects[i]);
+			allLocalGameObjects[i] = NULL;
 		}
 	}
-	allGameObjects.clear();
-
-	// Only need to clear the 'allBounceSpeeds' Vector
-	allBounceSpeeds.clear();
+	allLocalGameObjects.clear();
 }
 
 void Scene01::update(float deltaTime) {
 	Scene::update(deltaTime);
-
-	int size = allGameObjects.size();
-	for (int i = 0; i < size; i++) {
-		if (allGameObjects[i]->Position.x >= 1280 - 100) {
-			allBounceSpeeds[i].x = allBounceSpeeds[i].x * -1;
-		}
-		else if (allGameObjects[i]->Position.x <= 0 + 100) {
-			allBounceSpeeds[i].x = allBounceSpeeds[i].x * -1;
-		}
-		else if (allGameObjects[i]->Position.y >= 720 - 100) {
-			allBounceSpeeds[i].y = allBounceSpeeds[i].y * -1;
-		}
-		else if (allGameObjects[i]->Position.y <= 0 + 100) {
-			allBounceSpeeds[i].y = allBounceSpeeds[i].y * -1;
-		}
-
-		allGameObjects[i]->Position.x += allBounceSpeeds[i].x;
-		allGameObjects[i]->Position.y += allBounceSpeeds[i].y;
-
-		allGameObjects[i]->Rotation += 0.002;
-	}
 }

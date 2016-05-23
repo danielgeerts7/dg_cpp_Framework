@@ -16,6 +16,15 @@ GameObject::GameObject() : Line()
 
 	// Set (default) color to white
 	Color = Point3(255, 255, 255);
+
+	bodyDef.type = b2_dynamicBody;
+	dynamicBox.SetAsBox(100.0f, 100.0f);
+
+	fixtureDef.shape = &dynamicBox;
+	// Set the box density to be non-zero, so it will be dynamic.
+	fixtureDef.density = 1.0f;
+	// Override the default friction.
+	fixtureDef.friction = 0.5f;
 }
 
 GameObject::~GameObject()
