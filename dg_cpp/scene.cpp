@@ -11,10 +11,13 @@
 Scene::Scene()
 {
 	// Set the ground body position.
-	groundBodyDef.position.Set(0.0f, -720.0f);
+	groundBodyDef.position.Set(0.0f, 720.0f);
+
+	// Setting groundBody after setting groundBodyDef, else groundBodyDef is worthless
+	groundBody = world.CreateBody(&groundBodyDef);
 
 	// The extents are the half-widths of the box.
-	groundBox.SetAsBox(1280.0f, 10.0f);
+	groundBox.SetAsBox(1280.0f, 1.0f);
 
 	// Add the ground fixture to the ground body.
 	groundBody->CreateFixture(&groundBox, 0.0f);

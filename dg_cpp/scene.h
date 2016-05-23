@@ -23,7 +23,7 @@ public:
 
 	
 	// Define the gravity vector.
-	b2Vec2 gravity = b2Vec2(0.0f, -1.0f);
+	b2Vec2 gravity = b2Vec2(0.0f, 1.0f);
 
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	b2World world = b2World(gravity);
@@ -34,7 +34,7 @@ public:
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
-	b2Body* groundBody = world.CreateBody(&groundBodyDef);
+	b2Body* groundBody;
 
 	// Define the ground box shape.
 	b2PolygonShape groundBox;
