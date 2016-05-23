@@ -24,10 +24,10 @@ public:
 
 private:
 	GameObject* square;
-	GameObject* pentagram;
-	GameObject* triangle;
-	GameObject* circle;
-	GameObject* star;
+	GameObject* circle_1;
+	GameObject* circle_2;
+	GameObject* circle_3;
+	GameObject* circle_4;
 
 	std::vector<GameObject*> allLocalGameObjects;
 };

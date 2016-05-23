@@ -30,94 +30,74 @@ Scene01::Scene01() : Scene()
 	this->addChild(square);
 
 	// Creating a new Line
-	pentagram = new GameObject();
+	circle_1 = new GameObject();
 
-	// Adding some points to the line, to created a pentagram
-	pentagram->addPoint(Point2(0.0f, -110.0f));
-	pentagram->addPoint(Point2(60.0f, 80.0f));
-	pentagram->addPoint(Point2(-100.0f, -40.0f));
-	pentagram->addPoint(Point2(100.0f, -40.0f));
-	pentagram->addPoint(Point2(-60.0f, 80.0f));
+	// Calling CreateCircle to create a circle for circle_1
+	circle_1->CreateCircle(100, 6);
 
-	pentagram->Position = Point2(300.0f, 150.0f);
-	pentagram->Rotation = 0.0f;
-	pentagram->Scale = Point2(1.0f, 1.0f);
+	circle_1->Position = Point2(300.0f, 150.0f);
+	circle_1->Rotation = 0.0f;
+	circle_1->Scale = Point2(1.0f, 1.0f);
 
-	pentagram->Color = Point3(255, 255, 0);
-	pentagram->filled = false;
+	circle_1->Color = Point3(255, 255, 0);
+	circle_1->filled = false;
 
 	// Add the child to the this scene
-	this->addChild(pentagram);
+	this->addChild(circle_1);
 
 	// Creating a new Line
-	triangle = new GameObject();
+	circle_2 = new GameObject();
 
-	// Adding some points to the line, to created a star
-	triangle->addPoint(Point2(0.0f, -100.0f));
-	triangle->addPoint(Point2(-100.0f, 100.0f));
-	triangle->addPoint(Point2(100.0f, 100.0f));
+	// Calling CreateCircle to create a circle for circle_2
+	circle_2->CreateCircle(100, 12);
 
-	triangle->Position = Point2(1000.0f, 500.0f);
-	triangle->Rotation = 0.0f;
-	triangle->Scale = Point2(1.0f, 1.0f);
+	circle_2->Position = Point2(1000.0f, 500.0f);
+	circle_2->Rotation = 0.0f;
+	circle_2->Scale = Point2(1.0f, 1.0f);
 
-	triangle->Color = Point3(0, 0, 255);
-	triangle->filled = true;
+	circle_2->Color = Point3(0, 0, 255);
+	circle_2->filled = true;
 
 	// Add the child to the this scene
-	this->addChild(triangle);
+	this->addChild(circle_2);
 
 	// Creating a new Line
-	circle = new GameObject();
+	circle_3 = new GameObject();
 
-	// Adding some points to the line, to created a star
-	circle->addPoint(Point2(0.0f, -100.0f));
-	circle->addPoint(Point2(75.0f, -75.0f));
-	circle->addPoint(Point2(100.0f, 0.0f));
-	circle->addPoint(Point2(75.0f, 75.0f));
-	circle->addPoint(Point2(0.0f, 100.0f));
-	circle->addPoint(Point2(-75.0f, 75.0f));
-	circle->addPoint(Point2(-100.0f, 0.0f));
-	circle->addPoint(Point2(-75.0f, -75.0f));
+	// Calling CreateCircle to create a circle for circle_3
+	circle_3->CreateCircle(100, 16);
 
-	circle->Position = Point2(900.0f, 150.0f);
-	circle->Rotation = 0.0f;
-	circle->Scale = Point2(1.0f, 1.0f);
+	circle_3->Position = Point2(900.0f, 150.0f);
+	circle_3->Rotation = 0.0f;
+	circle_3->Scale = Point2(1.0f, 1.0f);
 
-	circle->Color = Point3(0, 255, 0);
-	circle->filled = false;
+	circle_3->Color = Point3(0, 255, 0);
+	circle_3->filled = false;
 
 	// Add the child to the this scene
-	this->addChild(circle);
+	this->addChild(circle_3);
 
 	// Creating a new Line
-	star = new GameObject();
+	circle_4 = new GameObject();
 
-	// Adding some points to the line, to created a star
-	star->addPoint(Point2(0.0f, -100.0f));
-	star->addPoint(Point2(25.0f, -25.0f));
-	star->addPoint(Point2(100.0f, 0.0f));
-	star->addPoint(Point2(25.0f, 25.0f));
-	star->addPoint(Point2(0.0f, 100.0f));
-	star->addPoint(Point2(-25.0f, 25.0f));
-	star->addPoint(Point2(-100.0f, 0.0f));
-	star->addPoint(Point2(-25.0f, -25.0f));
+	// Calling CreateCircle to create a circle for circle_4
+	circle_4->CreateCircle(100, 24);
 
-	star->Position = Point2(250.0f, 550.0f);
-	star->Rotation = 0.0f;
-	star->Scale = Point2(1.0f, 1.0f);
+	circle_4->Position = Point2(250.0f, 550.0f);
+	circle_4->Rotation = 0.0f;
+	circle_4->Scale = Point2(1.0f, 1.0f);
 
-	star->Color = Point3(255, 0, 0);
-	star->filled = false;
+	circle_4->Color = Point3(255, 0, 0);
+	circle_4->filled = false;
 
 	// Add the child to the this scene
-	this->addChild(star);
+	this->addChild(circle_4);
 
 	allLocalGameObjects.push_back(square);
-	allLocalGameObjects.push_back(pentagram);
-	allLocalGameObjects.push_back(triangle);
-	allLocalGameObjects.push_back(circle);
-	allLocalGameObjects.push_back(star);
+	allLocalGameObjects.push_back(circle_1);
+	allLocalGameObjects.push_back(circle_2);
+	allLocalGameObjects.push_back(circle_3);
+	allLocalGameObjects.push_back(circle_4);
 }
 
 

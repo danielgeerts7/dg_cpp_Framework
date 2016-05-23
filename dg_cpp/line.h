@@ -37,6 +37,8 @@ public:
 
 	void BindPoints();
 
+	void CreateCircle(int radius, int segments);
+
 	bool filled;
 
 private:
