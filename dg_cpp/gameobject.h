@@ -12,10 +12,12 @@
 #include <dg_cpp/pointx.h>
 #include <Box2D.h>
 
+const static enum BodyType { DYNAMIC, STATIC, KINEMATIC };
+
 class GameObject : public Line
 {
 public:
-	GameObject();
+	GameObject(BodyType type);
 	~GameObject();
 
 	Point2 Position;

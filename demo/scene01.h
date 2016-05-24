@@ -13,6 +13,7 @@
 #include <dg_cpp/gameobject.h>
 #include <dg_cpp/line.h>
 #include <dg_cpp/pointx.h>
+#include <dg_cpp/settings.h>
 
 class Scene01 : public Scene
 {

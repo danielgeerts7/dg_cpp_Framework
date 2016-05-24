@@ -66,6 +66,7 @@ add_library(dg_cpp
 	dg_cpp/renderer.h
 	dg_cpp/scene.cpp
 	dg_cpp/scene.h
+	dg_cpp/settings.h
 	dg_cpp/shader.cpp
 	dg_cpp/shader.h
 	dg_cpp/texture.cpp

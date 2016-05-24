@@ -32,12 +32,14 @@ public:
 	// Add a point to the points list
 	void addPoint(Point2 point) { points_vector.push_back(point.x);  points_vector.push_back(point.y);  points_vector.push_back(0.0f); }
 	
-	std::vector<GLfloat> getPoints() { return points_vector; }
+	std::vector<GLfloat> getPointsGLfloat() { return points_vector; }
+	std::vector<Point2> getPointsPoint2();
 	GLuint GetVertexbuffer() { return vertexbuffer; }
 
 	void BindPoints();
 
 	void CreateCircle(int radius, int segments);
+	int GetRadius() { return Radius; };
 
 	bool filled;
 
@@ -45,6 +47,7 @@ private:
 	// List of all points
 	std::vector<GLfloat> points_vector;
 	GLuint vertexbuffer;
+	int Radius = 0;
 };
 
 #endif /* LINE_H */

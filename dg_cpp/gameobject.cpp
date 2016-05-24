@@ -8,7 +8,7 @@
 #include "gameobject.h"
 
 
-GameObject::GameObject() : Line()
+GameObject::GameObject(BodyType type) : Line()
 {
 	Position = Point2(0.0f, 0.0f);
 	Rotation = 0.0f;
@@ -17,10 +17,14 @@ GameObject::GameObject() : Line()
 	// Set (default) color to white
 	Color = Point3(255, 255, 255);
 
-	bodyDef.type = b2_dynamicBody;
-	dynamicBox.SetAsBox(100.0f, 100.0f);
-
-	fixtureDef.shape = &dynamicBox;
+	switch (type) {
+		case DYNAMIC: bodyDef.type = b2_dynamicBody; break;
+		case STATIC: bodyDef.type = b2_staticBody; break;
+		case KINEMATIC: bodyDef.type = b2_kinematicBody; break;
+		default: bodyDef.type = b2_staticBody; break;
+	};
+	
+	
 	// Set the box density to be non-zero, so it will be dynamic.
 	fixtureDef.density = 1.0f;
 	// Override the default friction.

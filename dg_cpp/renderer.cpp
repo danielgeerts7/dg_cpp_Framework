@@ -23,7 +23,7 @@ Renderer::Renderer()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 	// Open a window and create its OpenGL context
-	_window = glfwCreateWindow(window_width, window_height, "dg_cpp", NULL, NULL);
+	_window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "dg_cpp", NULL, NULL);
 	if (_window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
 		glfwTerminate();
@@ -54,7 +54,7 @@ Renderer::Renderer()
 	matrixID = glGetUniformLocation(programID, "MVP");
 	blendColorID = glGetUniformLocation(programID, "blendColor"); // blendColor uniform in fragment shader
 
-	ProjectionMatrix = glm::ortho(0.0f, (float)window_width, (float)window_height, 0.0f, 0.1f, 100.0f);
+	ProjectionMatrix = glm::ortho(0.0f, (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT, 0.0f, 0.1f, 100.0f);
 }
 
 Renderer::~Renderer()
@@ -116,7 +116,7 @@ void Renderer::RenderLine(Line * line)
 {
 	// Get size of vector<points>
 	// Divide the whole size by 3 ( x,y,z )
-	int size = line->getPoints().size() / 3;
+	int size = line->getPointsGLfloat().size() / 3;
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(vertexPosition_modelspaceID);

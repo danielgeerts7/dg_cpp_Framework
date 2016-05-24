@@ -30,6 +30,7 @@
 #include <dg_cpp/camera.h>
 #include <dg_cpp/scene.h>
 #include <dg_cpp/line.h>
+#include <dg_cpp/settings.h>
 
 class Renderer
 {
@@ -46,9 +47,6 @@ private:
 	void RenderLine(Line* line);
 
 	GLFWwindow* _window;
-
-	int window_width = 1280;
-	int window_height = 720;
 
 	GLuint programID;
 	GLuint vertexPosition_modelspaceID;
