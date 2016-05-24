@@ -87,10 +87,6 @@ add_executable(demo
 	demo/scene01.cpp
 	demo/scene01.h
 )
-file(
-	COPY ${CMAKE_SOURCE_DIR}/demo/assets
-	DESTINATION ${CMAKE_BINARY_DIR}
-)
 
 if(UNIX)
 	set(BOX2D_INSTALL_BY_DEFAULT ON)
