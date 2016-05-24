@@ -49,15 +49,18 @@ Scene01::Scene01() : Scene()
 		for (int j = 0; j < 40; j++) {
 			GameObject* temp = new GameObject(DYNAMIC);
 
-			temp->CreateCircle(10, 12);
+			temp->CreateCircle(10, 8);
 			temp->Position = Point2(0.0f + (30.0f * j), 30.0f * i);
 			temp->Rotation = 0.0f;
 			temp->Scale = Point2(1.0f, 1.0f);
-			temp->Color = Point3(255, 0, 0);
+			int col1 = rand() % 255 + 1;
+			int col2 = rand() % 255 + 1;
+			int col3 = rand() % 255 + 1;
+			temp->Color = Point3(col1, col2, col3);
 			temp->filled = true;
 			
 			this->addChild(temp);
-			temp->body->SetGravityScale(4.0f);
+			temp->body->SetGravityScale(100.0f);
 			//temp->body->SetActive(false);
 			allLocalGameObjects.push_back(temp);
 		}
