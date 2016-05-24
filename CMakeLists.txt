@@ -71,6 +71,8 @@ add_library(dg_cpp
 	dg_cpp/shader.h
 	dg_cpp/texture.cpp
 	dg_cpp/texture.h
+	dg_cpp/timer.cpp
+	dg_cpp/timer.h
 )
 file(
 	COPY ${CMAKE_SOURCE_DIR}/dg_cpp/shaders

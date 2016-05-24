@@ -21,6 +21,18 @@ Scene::Scene()
 
 	// Add the ground fixture to the ground body.
 	groundBody->CreateFixture(&groundBox, 0.0f);
+
+	LeftWallBodyDef.position.Set(1.0f, -25.0f);
+	LeftWallBody = world.CreateBody(&LeftWallBodyDef);
+	LeftWallBox.SetAsBox(1.0f, (float)WINDOW_HEIGHT + 50);
+	LeftWallBody->CreateFixture(&LeftWallBox, 0.0f);
+
+	RightWallBodyDef.position.Set((float) WINDOW_WIDTH - 1.0f, -25.0f);
+	RightWallBody = world.CreateBody(&RightWallBodyDef);
+	RightWallBox.SetAsBox(1.0f, (float)WINDOW_HEIGHT + 50);
+	RightWallBody->CreateFixture(&RightWallBox, 0.0f);
+
+	fpstimer.start();
 }
 
 
@@ -41,6 +53,20 @@ void Scene::update(float deltaTime)
 		allGameObjects[i]->Position.y = allGameObjects[i]->body->GetPosition().y;
 		allGameObjects[i]->Rotation = allGameObjects[i]->body->GetAngle();
 	}
+
+	// ###############################################################
+	// show FPS
+	// ###############################################################
+	static int framecounter = 0;
+	if (fpstimer.seconds() > 1.0f) {
+		std::string fpstxt = "FPS: ";
+		fpstxt.append(std::to_string(framecounter));
+		fpstxt.append("\n");
+		printf(fpstxt.c_str());
+		framecounter = 0;
+		fpstimer.start();
+	}
+	framecounter++;
 }
 
 

@@ -8,10 +8,13 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+// Include standard headers
+#include <string>
 #include <vector>
 
 #include <dg_cpp/gameobject.h>
 #include <dg_cpp/settings.h>
+#include <dg_cpp/timer.h>
 #include <Box2D.h>
 
 class Scene
@@ -40,12 +43,22 @@ public:
 	// Define the ground box shape.
 	b2PolygonShape groundBox;
 
+	b2BodyDef LeftWallBodyDef;
+	b2Body* LeftWallBody;
+	b2PolygonShape LeftWallBox;
+
+	b2BodyDef RightWallBodyDef;
+	b2Body* RightWallBody;
+	b2PolygonShape RightWallBox;
+
 	void addChild(GameObject* obj);
 
 	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
 private:
 	std::vector<GameObject*> allGameObjects;
+
+	Timer fpstimer;
 
 	float timeStep = 1.0f / 60.0f;
 	int velocityIterations = 6;
