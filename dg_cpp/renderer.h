@@ -46,6 +46,12 @@ public:
 private:
 	void RenderLine(Line* line);
 
+	Timer fpstimer;
+	int ShowFramesPerSecond();
+
+	Timer GlobalTimer;
+	int GlobalFrameCounter = 0;
+
 	GLFWwindow* _window;
 
 	GLuint programID;

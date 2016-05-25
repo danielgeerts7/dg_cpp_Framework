@@ -32,6 +32,11 @@ public:
 	b2PolygonShape dynamicBox;
 	// Define the dynamic body fixture.
 	b2FixtureDef fixtureDef;
+
+	BodyType GetBodyType() { return bodytype; };
+
+private:
+	BodyType bodytype;
 };
 
 #endif /* GAMEOBJECT_H */

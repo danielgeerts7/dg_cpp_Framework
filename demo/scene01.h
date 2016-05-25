@@ -21,7 +21,7 @@ public:
 	Scene01();
 	~Scene01();
 
-	void update(float deltaTime);
+	virtual void update(double deltaTime);
 
 private:
 	GameObject* square;

@@ -10,6 +10,8 @@
 
 Renderer::Renderer()
 {
+	GlobalTimer.start();
+
 	// Initialise GLFW
 	if (!glfwInit())
 	{
@@ -55,6 +57,8 @@ Renderer::Renderer()
 	blendColorID = glGetUniformLocation(programID, "blendColor"); // blendColor uniform in fragment shader
 
 	ProjectionMatrix = glm::ortho(0.0f, (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT, 0.0f, 0.1f, 100.0f);
+
+	fpstimer.start();
 }
 
 Renderer::~Renderer()
@@ -63,11 +67,22 @@ Renderer::~Renderer()
 
 void Renderer::RenderScene(Scene* scene)
 {
+	static double vsync = 1.0f / 60.0f;
+
+	// Show frame per second (fps)
+	int fps = ShowFramesPerSecond();
+	
+	if (fps > 60) {
+		int sleepInNano = (int)((vsync * (double)fps) * 1000000);
+		//std::cout << "fps vsync triggerd" << std::endl;
+		std::this_thread::sleep_for(std::chrono::nanoseconds(sleepInNano));
+	}
+
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	// Update scene
-	scene->update(1.0f);
+	scene->update(vsync);
 
 	// Render every line that scene has
 	int size = scene->GetAllGameObjects().size();
@@ -109,6 +124,13 @@ void Renderer::RenderScene(Scene* scene)
 	// Swap buffers
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
+
+	if (GlobalFrameCounter == INT32_MAX) {
+		printf("Possible frame drop");
+		GlobalFrameCounter = 0;
+		GlobalTimer.start();
+	}
+	GlobalFrameCounter++;
 }
 
 
@@ -141,6 +163,23 @@ void Renderer::RenderLine(Line * line)
 	glDisableVertexAttribArray(0);
 }
 
+int Renderer::ShowFramesPerSecond() {
+	// ###############################################################
+	// show FPS
+	// ###############################################################
+	//static int framecounter = 0;
+	if (fpstimer.seconds() > 1.0f) {
+		std::string fpstxt = "FPS: ";
+		fpstxt.append(std::to_string(GlobalFrameCounter / GlobalTimer.seconds()));
+		fpstxt.append("\n");
+		printf(fpstxt.c_str());
+		//framecounter = 0;
+		fpstimer.start();
+	}
+	//framecounter++;
+
+	return GlobalFrameCounter / GlobalTimer.seconds();
+}
 
 void Renderer::CleanAndTerminateWindow() {
 	// Clear the screen

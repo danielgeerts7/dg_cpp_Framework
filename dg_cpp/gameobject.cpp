@@ -17,6 +17,7 @@ GameObject::GameObject(BodyType type) : Line()
 	// Set (default) color to white
 	Color = Point3(255, 255, 255);
 
+	bodytype = type;
 	switch (type) {
 		case DYNAMIC: bodyDef.type = b2_dynamicBody; break;
 		case STATIC: bodyDef.type = b2_staticBody; break;

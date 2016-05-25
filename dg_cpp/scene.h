@@ -23,7 +23,7 @@ public:
 	Scene();
 	~Scene();
 
-	virtual void update(float deltaTime);
+	virtual void update(double deltaTime);
 
 	
 	// Define the gravity vector.
@@ -55,14 +55,12 @@ public:
 
 	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
-private:
-	std::vector<GameObject*> allGameObjects;
-
-	Timer fpstimer;
-
 	float timeStep = 1.0f / 60.0f;
 	int velocityIterations = 6;
 	int positionIterations = 2;
+
+private:
+	std::vector<GameObject*> allGameObjects;
 };
 
 #endif /* SCENE_H */

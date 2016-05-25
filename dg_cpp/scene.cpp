@@ -31,8 +31,6 @@ Scene::Scene()
 	RightWallBody = world.CreateBody(&RightWallBodyDef);
 	RightWallBox.SetAsBox(1.0f, (float)WINDOW_HEIGHT + 50);
 	RightWallBody->CreateFixture(&RightWallBox, 0.0f);
-
-	fpstimer.start();
 }
 
 
@@ -40,11 +38,11 @@ Scene::~Scene()
 {
 }
 
-void Scene::update(float deltaTime)
+void Scene::update(double deltaTime)
 {
 	// Instruct the world to perform a single step of simulation.
 	// It is generally best to keep the time step and iterations fixed.
-	world.Step(timeStep, velocityIterations, positionIterations);
+	//world.Step(timeStep, velocityIterations, positionIterations);
 
 	int size = allGameObjects.size();
 	
@@ -53,20 +51,6 @@ void Scene::update(float deltaTime)
 		allGameObjects[i]->Position.y = allGameObjects[i]->body->GetPosition().y;
 		allGameObjects[i]->Rotation = allGameObjects[i]->body->GetAngle();
 	}
-
-	// ###############################################################
-	// show FPS
-	// ###############################################################
-	static int framecounter = 0;
-	if (fpstimer.seconds() > 1.0f) {
-		std::string fpstxt = "FPS: ";
-		fpstxt.append(std::to_string(framecounter));
-		fpstxt.append("\n");
-		printf(fpstxt.c_str());
-		framecounter = 0;
-		fpstimer.start();
-	}
-	framecounter++;
 }
 
 
