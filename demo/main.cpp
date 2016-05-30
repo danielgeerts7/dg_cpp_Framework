@@ -19,7 +19,7 @@
 
 int running = 1;
 
-void Box2Dthread(Renderer* renderer, Scene* currentScene) {
+void Box2DthreadMethod(Renderer* renderer, Scene* currentScene) {
 	//Render* render = renderPointer;
 	while (running == 1) {
 		// Instruct the world to perform a single step of simulation.
@@ -47,7 +47,7 @@ int main(void)
 	allScenes.push_back(scene01);
 
 	// Launch a thread
-	std::thread renderAndDrawThread(Box2Dthread, std::ref(renderer), std::ref(allScenes[currentScene]));
+	std::thread Box2DThread(Box2DthreadMethod, std::ref(renderer), std::ref(allScenes[currentScene]));
 
 	while (running == 1) {
 		// Update every frame the current Scene in renderer
@@ -60,7 +60,7 @@ int main(void)
 	}
 
 	// Join the thread with the main thread
-	renderAndDrawThread.join();
+	Box2DThread.join();
 
 	// Clean and Terminate the screen
 	renderer->CleanAndTerminateWindow();
