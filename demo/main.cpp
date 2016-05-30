@@ -19,20 +19,6 @@
 
 int running = 1;
 
-void Box2DthreadMethod(Renderer* renderer, Scene* currentScene) {
-	//Render* render = renderPointer;
-	while (running == 1) {
-		// Instruct the world to perform a single step of simulation.
-		// It is generally best to keep the time step and iterations fixed.
-		currentScene->world.Step(currentScene->timeStep, currentScene->velocityIterations, currentScene->positionIterations);
-
-		// If Escape is pressed or red X button is clicked then return
-		if (glfwGetKey(renderer->getCurrentWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(renderer->getCurrentWindow()) != 0) {
-			running = 0;
-		}
-	}
-}
-
 int main(void)
 {
 	//Check if demo works, press ESC to kill the application
@@ -46,9 +32,6 @@ int main(void)
 	std::vector<Scene*> allScenes;
 	allScenes.push_back(scene01);
 
-	// Launch a thread
-	std::thread Box2DThread(Box2DthreadMethod, std::ref(renderer), std::ref(allScenes[currentScene]));
-
 	while (running == 1) {
 		// Update every frame the current Scene in renderer
 		renderer->RenderScene(allScenes[currentScene]);
@@ -58,9 +41,6 @@ int main(void)
 			running = 0;
 		}
 	}
-
-	// Join the thread with the main thread
-	Box2DThread.join();
 
 	// Clean and Terminate the screen
 	renderer->CleanAndTerminateWindow();

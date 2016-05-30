@@ -55,10 +55,6 @@ public:
 
 	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
 
-	float timeStep = 1.0f / 60.0f;
-	int velocityIterations = 6;
-	int positionIterations = 2;
-
 private:
 	std::vector<GameObject*> allGameObjects;
 };

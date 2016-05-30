@@ -47,11 +47,10 @@ public:
 private:
 	void RenderLine(Line* line);
 
-	Timer fpstimer;
-	int ShowFramesPerSecond();
+	void showFrameRate(float numsecs);
 
-	Timer GlobalTimer;
-	int GlobalFrameCounter = 0;
+	double _calculateDeltaTime();
+	double _deltaTime = 0; ///< @brief deltaTime member
 
 	GLFWwindow* _window;
 
