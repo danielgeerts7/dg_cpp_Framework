@@ -19,7 +19,7 @@ Scene01::Scene01() : Scene()
 	square->addPoint(Point2(100.0f, 100.0f));
 	square->addPoint(Point2(-100.0f, 100.0f));
 
-	square->Position = Point2(450.0f, 400.0f);
+	square->Position = Point2(650.0f, 400.0f);
 	square->Rotation = 25.0f / RAD_TO_DEG;
 	square->Scale = Point2(1.0f, 1.0f);
 
@@ -35,7 +35,7 @@ Scene01::Scene01() : Scene()
 	// Calling CreateCircle to create a circle for circle_1
 	circle_1->CreateCircle(100, 3);
 
-	circle_1->Position = Point2(175.0f, 400.0f);
+	circle_1->Position = Point2(250.0f, 400.0f);
 	circle_1->Rotation = 180.0f / RAD_TO_DEG;
 	circle_1->Scale = Point2(1.0f, 1.0f);
 
@@ -46,11 +46,11 @@ Scene01::Scene01() : Scene()
 	this->addChild(circle_1);
 
 	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 20; j++) {
+		for (int j = 0; j < 40; j++) {
 			GameObject* temp = new GameObject(DYNAMIC);
 
 			temp->CreateCircle(10, 8);
-			temp->Position = Point2(0.0f + (30.0f * j), 0.0f + (60.0f * i));
+			temp->Position = Point2(0.0f + (30.0f * j), 0.0f + (30.0f * i));
 			temp->Rotation = 0.0f;
 			temp->Scale = Point2(1.0f, 1.0f);
 			int col1 = rand() % 255 + 1;
@@ -59,24 +59,6 @@ Scene01::Scene01() : Scene()
 			temp->Color = Point3(col1, col2, col3);
 			temp->filled = true;
 			
-			this->addChild(temp);
-			temp->body->SetGravityScale(10.0f);
-
-			allLocalGameObjects.push_back(temp);
-		}
-		for (int j = 0; j < 20; j++) {
-			GameObject* temp = new GameObject(DYNAMIC);
-
-			temp->CreateCircle(10, 8);
-			temp->Position = Point2(15.0f + (30.0f * j), 30.0f + (60.0f * i));
-			temp->Rotation = 0.0f;
-			temp->Scale = Point2(1.0f, 1.0f);
-			int col1 = rand() % 255 + 1;
-			int col2 = rand() % 255 + 1;
-			int col3 = rand() % 255 + 1;
-			temp->Color = Point3(col1, col2, col3);
-			temp->filled = true;
-
 			this->addChild(temp);
 			temp->body->SetGravityScale(10.0f);
 
