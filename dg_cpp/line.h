@@ -39,6 +39,7 @@ public:
 	void BindPoints();
 
 	void CreateCircle(int radius, int segments);
+	void CreateSquare(int scaleX, int scaleY);
 	int GetRadius() { return Radius; };
 
 	bool filled;

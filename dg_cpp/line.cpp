@@ -54,3 +54,10 @@ void Line::CreateCircle(int radius, int segments) {
 	}
 	//this->addPoint(Point2(points_vector[0], points_vector[1]));
 }
+
+void Line::CreateSquare(int scaleX, int scaleY) {
+	this->addPoint(Point2(-scaleX, -scaleY));
+	this->addPoint(Point2(scaleX, -scaleY));
+	this->addPoint(Point2(scaleX, scaleY));
+	this->addPoint(Point2(-scaleX, scaleY));
+}
