@@ -24,13 +24,6 @@ public:
 	~Scene();
 
 	virtual void update(double deltaTime);
-
-	
-	// Define the gravity vector.
-	b2Vec2 gravity = b2Vec2(0.0f, 1.0f);
-
-	// Construct a world object, which will hold and simulate the rigid bodies.
-	b2World world = b2World(gravity);
 	
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
@@ -51,12 +44,13 @@ public:
 	b2Body* RightWallBody;
 	b2PolygonShape RightWallBox;
 
-	void addChild(GameObject* obj);
+	std::vector<GameObject*> ChildrenInScene;
 
-	std::vector<GameObject*> GetAllGameObjects() { return allGameObjects; }
+	void addChild(GameObject* child);
+	//std::vector<GameObject*> GetChildren(return Children);
 
-private:
-	std::vector<GameObject*> allGameObjects;
+	// Construct a world object, which will hold and simulate the rigid bodies.
+	b2World world = b2World(b2Vec2(0.0f, 1.0f));
 };
 
 #endif /* SCENE_H */

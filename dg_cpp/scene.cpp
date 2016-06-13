@@ -38,38 +38,33 @@ Scene::~Scene()
 {
 }
 
-void Scene::update(double deltaTime)
-{
-	// Instruct the world to perform a single step of simulation.
-	// It is generally best to keep the time step and iterations fixed.
-	//world.Step(timeStep, velocityIterations, positionIterations);
+void Scene::update(double deltaTime) {
+	int size = ChildrenInScene.size();
 
-	int size = allGameObjects.size();
-	
 	for (int i = 0; i < size; i++) {
-		allGameObjects[i]->Position.x = allGameObjects[i]->body->GetPosition().x;
-		allGameObjects[i]->Position.y = allGameObjects[i]->body->GetPosition().y;
-		allGameObjects[i]->Rotation = allGameObjects[i]->body->GetAngle();
+		ChildrenInScene[i]->Position.x = ChildrenInScene[i]->body->GetPosition().x;
+		ChildrenInScene[i]->Position.y = ChildrenInScene[i]->body->GetPosition().y;
+		ChildrenInScene[i]->Rotation = ChildrenInScene[i]->body->GetAngle();
 	}
 }
 
-
-void Scene::addChild(GameObject* obj)
+void Scene::addChild(GameObject * child)
 {
-	obj->BindPoints();
-	allGameObjects.push_back(obj);
+	child->BindPoints();
 
-	obj->bodyDef.position.Set(obj->Position.x, obj->Position.y);
-	
-	int sizeOfPoints = obj->getPointsPoint2().size();
+	ChildrenInScene.push_back(child);
+
+	child->bodyDef.position.Set(child->Position.x, child->Position.y);
+
+	int sizeOfPoints = child->getPointsPoint2().size();
 	std::vector<b2Vec2> temp = std::vector<b2Vec2>();
 	for (int i = 0; i < sizeOfPoints; i++) {
-		temp.push_back(b2Vec2(obj->getPointsPoint2()[i].x, obj->getPointsPoint2()[i].y));
+		temp.push_back(b2Vec2(child->getPointsPoint2()[i].x, child->getPointsPoint2()[i].y));
 	}
 
-	obj->dynamicBox.Set(&temp[0], sizeOfPoints);
-	obj->fixtureDef.shape = &obj->dynamicBox;
-	obj->body = world.CreateBody(&obj->bodyDef);
-	obj->body->CreateFixture(&obj->fixtureDef);
-	obj->body->SetTransform (obj->body->GetPosition(), obj->Rotation);
+	child->dynamicBox.Set(&temp[0], sizeOfPoints);
+	child->fixtureDef.shape = &child->dynamicBox;
+	child->body = world.CreateBody(&child->bodyDef);
+	child->body->CreateFixture(&child->fixtureDef);
+	child->body->SetTransform(b2Vec2(child->Position.x, child->Position.y), child->Rotation);
 }

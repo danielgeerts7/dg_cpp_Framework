@@ -45,7 +45,10 @@ public:
 	GLFWwindow* getCurrentWindow() { return _window; }
 
 private:
+	void RenderGameObject(glm::mat4& modelMatrix, GameObject* gameobject, Scene* scene);
 	void RenderLine(Line* line);
+
+	glm::mat4 _getModelMatrix(GameObject * gameobject);
 
 	void showFrameRate(float numsecs);
 
@@ -58,6 +61,8 @@ private:
 	GLuint vertexPosition_modelspaceID;
 	GLuint vertexUVID;
 	GLuint matrixID;
+
+	glm::mat4 ViewMatrix;
 
 	GLuint blendColorID;
 

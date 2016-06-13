@@ -54,6 +54,9 @@ Renderer::Renderer()
 	matrixID = glGetUniformLocation(programID, "MVP");
 	blendColorID = glGetUniformLocation(programID, "blendColor"); // blendColor uniform in fragment shader
 
+	// Make variable ModelMatrix
+	ViewMatrix = getViewMatrix();
+
 	ProjectionMatrix = glm::ortho(0.0f, (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT, 0.0f, 0.1f, 100.0f);
 }
 
@@ -77,13 +80,10 @@ void Renderer::RenderScene(Scene* scene)
 
 	// Update scene
 	scene->update(_deltaTime);
+	ViewMatrix = getViewMatrix();
 
 	// Render every line that scene has
-	int size = scene->GetAllGameObjects().size();
-
-	// Make variable ModelMatrix
-	glm::mat4 ViewMatrix = getViewMatrix();
-	glm::mat4 ModelMatrix = glm::mat4(1.0f);
+	int size = scene->ChildrenInScene.size();
 
 	// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
 	computeMatricesFromInputs(_window);
@@ -93,26 +93,9 @@ void Renderer::RenderScene(Scene* scene)
 
 	for (int i = 0; i < size; i++) {
 		// Get a single GameObject
-		GameObject* gameobj = scene->GetAllGameObjects()[i];
-
-		// Build the Model matrix
-		glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(gameobj->Position.x, gameobj->Position.y, 0.0f));
-		glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, gameobj->Rotation);
-		glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(gameobj->Scale.x, gameobj->Scale.y, 1.0f));
-
-		ModelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
-
-		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
-
-		// Send our transformation to the currently bound shader,
-		// in the "MVP" uniform
-		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
-
-		// _blendColorID
-		glUniform4f(blendColorID, (float)gameobj->Color.x / 255.0f, (float)gameobj->Color.y / 255.0f, (float)gameobj->Color.z / 255.0f, 1.0f);
-
-		// Now render each line
-		RenderLine(gameobj);
+		glm::mat4 modelMatrix = glm::mat4(1.0f);
+		GameObject* gameobj = scene->ChildrenInScene[i];
+		this->RenderGameObject(modelMatrix, gameobj, scene);
 	}
 
 	// Swap buffers
@@ -120,6 +103,23 @@ void Renderer::RenderScene(Scene* scene)
 	glfwPollEvents();
 }
 
+void Renderer::RenderGameObject(glm::mat4& modelMatrix, GameObject* gameobject, Scene* currentScene) {
+	modelMatrix *= this->_getModelMatrix(gameobject);
+
+	// generate the ModelMatrix
+	glm::mat4 MVP = ProjectionMatrix * ViewMatrix * modelMatrix;
+
+	// Send our transformation to the currently bound shader,
+	// in the "MVP" uniform
+	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
+
+	// _blendColorID
+	glUniform4f(blendColorID, (float)gameobject->Color.x / 255.0f, (float)gameobject->Color.y / 255.0f, (float)gameobject->Color.z / 255.0f, 1.0f);
+
+
+	// Now render each line
+	RenderLine(gameobject);
+}
 
 void Renderer::RenderLine(Line * line)
 {
@@ -139,15 +139,30 @@ void Renderer::RenderLine(Line * line)
 		(void*)0						// array buffer offset
 		);
 
-	// Check if line needs to be filled or not
-	if (line->filled == false) {
-		// Draw only a line !
-		glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
-	} else {
+	// Draw only a line !
+	glDrawArrays(GL_LINE_LOOP, 0, size); // Starting from vertex 0; size is the size of points that the line has
+	if (line->filled) {
 		// Draw a filled object from line !
 		glDrawArrays(GL_POLYGON, 0, size); // Starting from vertex 0; size is the size of points that the line has
 	}
 	glDisableVertexAttribArray(0);
+}
+
+glm::mat4 Renderer::_getModelMatrix(GameObject* gameobject)
+{
+	// OpenGL doesn't understand our Vector2. Make it glm::vec3 compatible.
+	glm::vec3 position = glm::vec3(gameobject->Position.x, gameobject->Position.y, 0.0f);
+	glm::vec3 rotation = glm::vec3(0.0f, 0.0f, gameobject->Rotation);
+	glm::vec3 scale = glm::vec3(gameobject->Scale.x, gameobject->Scale.y, 1.0f);
+
+	// Build the Model matrix
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), position);
+	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, rotation.z);
+	glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), scale);
+
+	glm::mat4 mm = translationMatrix * rotationMatrix * scalingMatrix;
+
+	return mm;
 }
 
 void Renderer::showFrameRate(float numsecs)

@@ -40,7 +40,10 @@ public:
 
 	void CreateCircle(int radius, int segments);
 	void CreateSquare(int scaleX, int scaleY);
-	int GetRadius() { return Radius; };
+	int GetCircleRadius() { return Radius; };
+
+	int GetSquareWidth() { return Width; };
+	int GetSquareHeight() { return Height; };
 
 	bool filled;
 
@@ -49,6 +52,8 @@ private:
 	std::vector<GLfloat> points_vector;
 	GLuint vertexbuffer;
 	int Radius = 0;
+	int Width = 0;
+	int Height = 0;
 };
 
 #endif /* LINE_H */

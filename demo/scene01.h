@@ -24,8 +24,12 @@ public:
 	virtual void update(double deltaTime);
 
 private:
-	GameObject* square;
-	GameObject* circle_1;
+	GameObject* defaultObj;
+	GameObject* ball;
+
+	GameObject* BasketLeft;
+	GameObject* BasketRigth;
+	GameObject* BasketBottom;
 
 	std::vector<GameObject*> allLocalGameObjects;
 };

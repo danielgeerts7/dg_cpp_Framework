@@ -15,7 +15,7 @@ GameObject::GameObject(BodyType type) : Line()
 	Scale = Point2(1.0f, 1.0f);
 
 	// Set (default) color to white
-	Color = Point3(255, 255, 255);
+	Color = Point3(207, 3, 124);
 
 	bodytype = type;
 	switch (type) {
@@ -24,7 +24,6 @@ GameObject::GameObject(BodyType type) : Line()
 		case KINEMATIC: bodyDef.type = b2_kinematicBody; break;
 		default: bodyDef.type = b2_staticBody; break;
 	};
-	
 	
 	// Set the box density to be non-zero, so it will be dynamic.
 	fixtureDef.density = 1.0f;

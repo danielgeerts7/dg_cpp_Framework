@@ -11,63 +11,150 @@
 Scene01::Scene01() : Scene()
 {
 	// Creating a new Line
-	square = new GameObject(STATIC);
+	defaultObj = new GameObject(STATIC);
 
-	// Adding 4 points to the line, to created a square
-	square->addPoint(Point2(-100.0f, -100.0f));
-	square->addPoint(Point2(100.0f, -100.0f));
-	square->addPoint(Point2(100.0f, 100.0f));
-	square->addPoint(Point2(-100.0f, 100.0f));
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(100, 10);
 
-	square->Position = Point2(650.0f, 400.0f);
-	square->Rotation = 25.0f / RAD_TO_DEG;
-	square->Scale = Point2(1.0f, 1.0f);
+	defaultObj->Position = Point2(447, 392);
+	defaultObj->Rotation = 25.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
 
-	square->Color = Point3(0, 255, 255);
-	square->filled = true;
+	defaultObj->Color = Point3(0, 255, 255);
+	defaultObj->filled = false;
 
 	// Add the child to the this scene
-	this->addChild(square);
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
 
 	// Creating a new Line
-	circle_1 = new GameObject(STATIC);
+	defaultObj = new GameObject(STATIC);
 
-	// Calling CreateCircle to create a circle for circle_1
-	circle_1->CreateCircle(100, 3);
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(100, 10);
 
-	circle_1->Position = Point2(250.0f, 400.0f);
-	circle_1->Rotation = 180.0f / RAD_TO_DEG;
-	circle_1->Scale = Point2(1.0f, 1.0f);
+	defaultObj->Position = Point2(270, 290);
+	defaultObj->Rotation = 35.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
 
-	circle_1->Color = Point3(255, 255, 0);
-	circle_1->filled = true;
+	defaultObj->Color = Point3(255, 0, 255);
+	defaultObj->filled = false;
 
 	// Add the child to the this scene
-	this->addChild(circle_1);
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
 
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 40; j++) {
-			GameObject* temp = new GameObject(DYNAMIC);
+	// Creating a new Line
+	defaultObj = new GameObject(STATIC);
 
-			temp->CreateCircle(10, 8);
-			temp->Position = Point2(0.0f + (30.0f * j), 0.0f + (30.0f * i));
-			temp->Rotation = 0.0f;
-			temp->Scale = Point2(1.0f, 1.0f);
-			int col1 = rand() % 255 + 1;
-			int col2 = rand() % 255 + 1;
-			int col3 = rand() % 255 + 1;
-			temp->Color = Point3(col1, col2, col3);
-			temp->filled = true;
-			
-			this->addChild(temp);
-			temp->body->SetGravityScale(10.0f);
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(100, 10);
 
-			allLocalGameObjects.push_back(temp);
-		}
-	}
+	defaultObj->Position = Point2(85, 205);
+	defaultObj->Rotation = 15.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
 
-	allLocalGameObjects.push_back(square);
-	allLocalGameObjects.push_back(circle_1);
+	defaultObj->Color = Point3(255, 255, 0);
+	defaultObj->filled = false;
+
+	// Add the child to the this scene
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
+
+	// Creating a new Line
+	defaultObj = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(100, 10);
+
+	defaultObj->Position = Point2(650, 500);
+	defaultObj->Rotation = 165.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
+
+	defaultObj->Color = Point3(0, 148, 189);
+	defaultObj->filled = false;
+
+	// Add the child to the this scene
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
+
+	// Creating a new Line
+	defaultObj = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(10, 25);
+
+	defaultObj->Position = Point2(755, 440);
+	defaultObj->Rotation = 0.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
+
+	defaultObj->Color = Point3(255, 140, 0);
+	defaultObj->filled = false;
+
+	// Add the child to the this scene
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
+
+	// Creating a new Line
+	BasketLeft = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	BasketLeft->CreateSquare(25, 10);
+
+	BasketLeft->Position = Point2(464, 695);
+	BasketLeft->Rotation = 90.0f / RAD_TO_DEG;
+	BasketLeft->Scale = Point2(1.0f, 1.0f);
+
+	BasketLeft->Color = Point3(255, 140, 0);
+	BasketLeft->filled = true;
+	this->addChild(BasketLeft);
+	allLocalGameObjects.push_back(BasketLeft);
+
+	// Creating a new Line
+	BasketRigth = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	BasketRigth->CreateSquare(25, 10);
+
+	BasketRigth->Position = Point2(536, 695);
+	BasketRigth->Rotation = 90.0f / RAD_TO_DEG;
+	BasketRigth->Scale = Point2(1.0f, 1.0f);
+
+	BasketRigth->Color = Point3(255, 140, 0);
+	BasketRigth->filled = true;
+	this->addChild(BasketRigth);
+	BasketRigth->body->SetGravityScale(2);
+	allLocalGameObjects.push_back(BasketRigth);
+
+	// Creating a new Line
+	BasketBottom = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	BasketBottom->CreateSquare(25, 10);
+
+	BasketBottom->Position = Point2(500, 710);
+	BasketBottom->Rotation = 0.0f / RAD_TO_DEG;
+	BasketBottom->Scale = Point2(1.0f, 1.0f);
+
+	BasketBottom->Color = Point3(255, 140, 0);
+	BasketBottom->filled = true;
+
+	// Add the child to the this scene
+	this->addChild(BasketBottom);
+	allLocalGameObjects.push_back(BasketBottom);
+
+	ball = new GameObject(DYNAMIC);
+
+	ball->CreateCircle(10, 10);
+	ball->Position = Point2(100, 180);
+	ball->Rotation = 0.0f;
+	ball->Scale = Point2(1.0f, 1.0f);
+	ball->Color = Point3(255, 255, 255);
+	ball->filled = false;
+
+	this->addChild(ball);
+	ball->body->SetGravityScale(1.0f);
+	allLocalGameObjects.push_back(ball);
 }
 
 
@@ -82,8 +169,34 @@ Scene01::~Scene01()
 		}
 	}
 	allLocalGameObjects.clear();
+
+	if (defaultObj != NULL) {
+		delete(defaultObj);
+		defaultObj = NULL;
+	}
+	if (ball != NULL) {
+		delete(ball);
+		ball = NULL;
+	}
 }
 
 void Scene01::update(double deltaTime) {
 	Scene::update(deltaTime);
+
+	if (ball->Position.y > BasketLeft->Position.y - BasketLeft->GetSquareHeight()){
+		if (ball->Position.y > BasketRigth->Position.y - BasketRigth->GetSquareHeight()) {
+			if (ball->Position.x > BasketBottom->Position.x - BasketBottom->GetSquareWidth()) {
+				if (ball->Position.x < BasketBottom->Position.x + BasketBottom->GetSquareWidth()) {
+					ball->Color = Point2(0, 255, 180);
+					for each (GameObject* test in allLocalGameObjects) {
+						test->Color = Point2(0, 255, 180);
+						test->filled = true;
+					}
+					ball->filled = true;
+				}
+			}
+		}
+	}
+
+	//bottom->body->SetTransform(b2Vec2(bottom->body->GetPosition().x + 0.5f, bottom->body->GetPosition().y), bottom->body->GetAngle());
 }

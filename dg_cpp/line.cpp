@@ -56,6 +56,8 @@ void Line::CreateCircle(int radius, int segments) {
 }
 
 void Line::CreateSquare(int scaleX, int scaleY) {
+	Width = scaleX;
+	Height = scaleY;
 	this->addPoint(Point2(-scaleX, -scaleY));
 	this->addPoint(Point2(scaleX, -scaleY));
 	this->addPoint(Point2(scaleX, scaleY));
