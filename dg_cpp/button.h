@@ -1,4 +1,3 @@
-#pragma once
 /**
 * This file is part of DG_CPP, a 2D OpenGL framework.
 *
