@@ -12,6 +12,7 @@
 #include <dg_cpp/scene.h>
 #include <dg_cpp/line.h>
 #include <dg_cpp/gameobject.h>
+#include <dg_cpp/draggablegameobject.h>
 #include <dg_cpp/button.h>
 #include <dg_cpp/pointx.h>
 #include <dg_cpp/settings.h>
@@ -32,6 +33,8 @@ private:
 	GameObject* BasketRigth;
 	GameObject* BasketBottom;
 
+	DraggableGameObject* draggableGameObject1;
+	DraggableGameObject* draggableGameObject2;
 	Button* StartBox2DBtn;
 
 	std::vector<GameObject*> allLocalGameObjects;

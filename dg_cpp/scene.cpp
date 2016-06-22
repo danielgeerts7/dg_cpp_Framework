@@ -50,7 +50,7 @@ void Scene::update(double deltaTime) {
 	}
 
 	for each (Button* button in ChildrenInScene) {
-		if (button->IsButton()) {
+		if (button->GetObjectType() == BUTTON) {
 			double mouseX, mouseY;
 			glfwGetCursorPos(CurrentWindow, &mouseX, &mouseY);
 			if (button->isMouseOverButton(mouseX, mouseY)) {
@@ -59,9 +59,36 @@ void Scene::update(double deltaTime) {
 				if (glfwGetMouseButton (CurrentWindow, GLFW_MOUSE_BUTTON_1 ) == GLFW_PRESS) {
 					button->Color = button->firstColor - 100;
 					button->isClicked = true;
+
+					for each (DraggableGameObject* draggedObject in ChildrenInScene) {
+						if (draggedObject->GetObjectType() == DRAGGABLE) {
+							draggedObject->CanBeDragged = false;
+							draggedObject->filled = false;
+						}
+					}
 				}
 			} else {
 				button->Color = button->firstColor;
+			}
+		}
+	}
+
+	for each (DraggableGameObject* draggable in ChildrenInScene) {
+		if (draggable->GetObjectType() == DRAGGABLE && draggable->CanBeDragged) {
+			double mouseX, mouseY;
+			glfwGetCursorPos(CurrentWindow, &mouseX, &mouseY);
+			if (draggable->isMouseOverButton(mouseX, mouseY)) {
+				draggable->Color = draggable->firstColor - 50;
+
+				if (glfwGetMouseButton(CurrentWindow, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS) {
+					draggable->Color = draggable->firstColor - 100;
+					draggable->Position.x = mouseX;
+					draggable->Position.y = mouseY;
+					draggable->body->SetTransform(b2Vec2(mouseX, mouseY), draggable->Rotation);
+				}
+			}
+			else {
+				draggable->Color = draggable->firstColor;
 			}
 		}
 	}

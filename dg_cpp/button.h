@@ -19,12 +19,10 @@ public:
 	bool isMouseOverButton(double mouseX, double mouseY);
 
 	Point3 firstColor;
-	bool IsButton() { return isButton; }
 	bool isClicked = false;
 
 private:
 	std::string TextBtn;
-	bool isButton = false;
 };
 
 #endif /* BUTTON_H */

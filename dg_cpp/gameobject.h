@@ -13,6 +13,8 @@
 #include <Box2D.h>
 
 const static enum BodyType { DYNAMIC, STATIC, KINEMATIC };
+const static enum TypeOfObject { GAMEOBJECT, BUTTON, DRAGGABLE };
+
 
 class GameObject : public Line
 {
@@ -34,6 +36,9 @@ public:
 	b2FixtureDef fixtureDef;
 
 	BodyType GetBodyType() { return bodytype; };
+
+	TypeOfObject objectType = GAMEOBJECT;
+	TypeOfObject GetObjectType() { return objectType; };
 
 private:
 	BodyType bodytype;

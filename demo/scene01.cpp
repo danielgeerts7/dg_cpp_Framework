@@ -33,23 +33,6 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	// Adding 4 points to the line, to created a defaultObj
 	defaultObj->CreateSquare(100, 10);
 
-	defaultObj->Position = Point2(270, 290);
-	defaultObj->Rotation = 35.0f / RAD_TO_DEG;
-	defaultObj->Scale = Point2(1.0f, 1.0f);
-
-	defaultObj->Color = Point3(255, 0, 255);
-	defaultObj->filled = false;
-
-	// Add the child to the this scene
-	this->addChild(defaultObj);
-	allLocalGameObjects.push_back(defaultObj);
-
-	// Creating a new Line
-	defaultObj = new GameObject(STATIC);
-
-	// Adding 4 points to the line, to created a defaultObj
-	defaultObj->CreateSquare(100, 10);
-
 	defaultObj->Position = Point2(85, 205);
 	defaultObj->Rotation = 15.0f / RAD_TO_DEG;
 	defaultObj->Scale = Point2(1.0f, 1.0f);
@@ -65,7 +48,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	defaultObj = new GameObject(STATIC);
 
 	// Adding 4 points to the line, to created a defaultObj
-	defaultObj->CreateSquare(100, 10);
+	defaultObj->CreateSquare(50, 10);
 
 	defaultObj->Position = Point2(650, 500);
 	defaultObj->Rotation = 165.0f / RAD_TO_DEG;
@@ -79,29 +62,12 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	allLocalGameObjects.push_back(defaultObj);
 
 	// Creating a new Line
-	defaultObj = new GameObject(STATIC);
-
-	// Adding 4 points to the line, to created a defaultObj
-	defaultObj->CreateSquare(10, 25);
-
-	defaultObj->Position = Point2(755, 440);
-	defaultObj->Rotation = 0.0f / RAD_TO_DEG;
-	defaultObj->Scale = Point2(1.0f, 1.0f);
-
-	defaultObj->Color = Point3(255, 140, 0);
-	defaultObj->filled = false;
-
-	// Add the child to the this scene
-	this->addChild(defaultObj);
-	allLocalGameObjects.push_back(defaultObj);
-
-	// Creating a new Line
 	BasketLeft = new GameObject(STATIC);
 
 	// Adding 4 points to the line, to created a defaultObj
-	BasketLeft->CreateSquare(25, 10);
+	BasketLeft->CreateSquare(120, 10);
 
-	BasketLeft->Position = Point2(464, 695);
+	BasketLeft->Position = Point2(504, 600);
 	BasketLeft->Rotation = 90.0f / RAD_TO_DEG;
 	BasketLeft->Scale = Point2(1.0f, 1.0f);
 
@@ -116,7 +82,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	// Adding 4 points to the line, to created a defaultObj
 	BasketRigth->CreateSquare(25, 10);
 
-	BasketRigth->Position = Point2(536, 695);
+	BasketRigth->Position = Point2(576, 695);
 	BasketRigth->Rotation = 90.0f / RAD_TO_DEG;
 	BasketRigth->Scale = Point2(1.0f, 1.0f);
 
@@ -132,7 +98,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	// Adding 4 points to the line, to created a defaultObj
 	BasketBottom->CreateSquare(25, 10);
 
-	BasketBottom->Position = Point2(500, 710);
+	BasketBottom->Position = Point2(540, 710);
 	BasketBottom->Rotation = 0.0f / RAD_TO_DEG;
 	BasketBottom->Scale = Point2(1.0f, 1.0f);
 
@@ -157,6 +123,37 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	allLocalGameObjects.push_back(ball);
 
 
+/** CREATING ALL DRAGGABLE GAME OBJECTS  **/
+	// Creating a new Line
+	draggableGameObject1 = new DraggableGameObject(Point3(255, 140, 0));
+
+	// Adding 4 points to the line, to created a defaultObj
+	draggableGameObject1->CreateSquare(10, 25);
+
+	draggableGameObject1->Position = Point2(50, 50);
+	draggableGameObject1->Rotation = 0.0f / RAD_TO_DEG;
+	draggableGameObject1->Scale = Point2(1.0f, 1.0f);
+
+	// Add the child to the this scene
+	this->addChild(draggableGameObject1);
+	allLocalGameObjects.push_back(draggableGameObject1);
+
+	// Creating a new Line
+	draggableGameObject2 = new DraggableGameObject(Point3(255, 0, 255));
+
+	// Adding 4 points to the line, to created a defaultObj
+	draggableGameObject2->CreateSquare(100, 10);
+
+	draggableGameObject2->Position = Point2(200, 75);
+	draggableGameObject2->Rotation = 35.0f / RAD_TO_DEG;
+	draggableGameObject2->Scale = Point2(1.0f, 1.0f);
+
+	// Add the child to the this scene
+	this->addChild(draggableGameObject2);
+	allLocalGameObjects.push_back(draggableGameObject2);
+
+
+/** CREATING ALL BUTTONS **/
 	// Creating a new Line
 	StartBox2DBtn = new Button(Point3(23, 219, 36));
 

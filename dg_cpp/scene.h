@@ -32,6 +32,7 @@
 
 #include <dg_cpp/gameobject.h>
 #include <dg_cpp/button.h>
+#include <dg_cpp/draggablegameobject.h>
 #include <dg_cpp/settings.h>
 #include <dg_cpp/timer.h>
 #include <Box2D.h>

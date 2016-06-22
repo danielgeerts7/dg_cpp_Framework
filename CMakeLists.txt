@@ -59,6 +59,8 @@ add_library(dg_cpp
 	dg_cpp/button.h
 	dg_cpp/camera.cpp
 	dg_cpp/camera.h
+	dg_cpp/draggablegameobject.cpp
+	dg_cpp/draggablegameobject.h
 	dg_cpp/gameobject.cpp
 	dg_cpp/gameobject.h
 	dg_cpp/line.cpp

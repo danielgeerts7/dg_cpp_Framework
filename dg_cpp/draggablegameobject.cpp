@@ -5,24 +5,25 @@
 *   - Initial commit
 */
 
-#include "button.h"
+#include "draggablegameobject.h"
 
 
-Button::Button(Point3 color) : GameObject(STATIC)
-{
+DraggableGameObject::DraggableGameObject(Point3 color) : GameObject(STATIC) {
 	Color = color;
 	firstColor = color;
 
-	objectType = BUTTON;
+	objectType = DRAGGABLE;
+
+	this->filled = true;
 }
 
 
-Button::~Button()
+DraggableGameObject::~DraggableGameObject()
 {
 }
 
 
-bool Button::isMouseOverButton(double mouseX, double mouseY)
+bool DraggableGameObject::isMouseOverButton(double mouseX, double mouseY)
 {
 	if (this->Position.x + this->GetSquareWidth() > mouseX &&
 		this->Position.x - this->GetSquareWidth() < mouseX &&
@@ -32,5 +33,3 @@ bool Button::isMouseOverButton(double mouseX, double mouseY)
 	}
 	return false;
 }
-
-
