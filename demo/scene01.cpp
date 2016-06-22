@@ -189,6 +189,30 @@ Scene01::~Scene01()
 		delete(ball);
 		ball = NULL;
 	}
+	if (BasketLeft != NULL) {
+		delete(BasketLeft);
+		BasketLeft = NULL;
+	}
+	if (BasketRigth != NULL) {
+		delete(BasketRigth);
+		BasketRigth = NULL;
+	}
+	if (BasketBottom != NULL) {
+		delete(BasketBottom);
+		BasketBottom = NULL;
+	}
+	if (draggableGameObject1 != NULL) {
+		delete(draggableGameObject1);
+		draggableGameObject1 = NULL;
+	}
+	if (draggableGameObject2 != NULL) {
+		delete(draggableGameObject2);
+		draggableGameObject2 = NULL;
+	}
+	if (StartBox2DBtn != NULL) {
+		delete(StartBox2DBtn);
+		StartBox2DBtn = NULL;
+	}
 }
 
 void Scene01::update(double deltaTime) {
