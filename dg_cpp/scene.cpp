@@ -8,8 +8,10 @@
 #include "Scene.h"
 
 
-Scene::Scene()
+Scene::Scene(GLFWwindow* currentWindow)
 {
+	CurrentWindow = currentWindow;
+
 	// Set the ground body position.
 	groundBodyDef.position.Set(-(float)WINDOW_WIDTH /2, (float)WINDOW_HEIGHT);
 
@@ -45,6 +47,33 @@ void Scene::update(double deltaTime) {
 		ChildrenInScene[i]->Position.x = ChildrenInScene[i]->body->GetPosition().x;
 		ChildrenInScene[i]->Position.y = ChildrenInScene[i]->body->GetPosition().y;
 		ChildrenInScene[i]->Rotation = ChildrenInScene[i]->body->GetAngle();
+	}
+
+	for each (Button* button in ChildrenInScene) {
+		if (button->isButton) {
+			double mouseX, mouseY;
+			glfwGetCursorPos(CurrentWindow, &mouseX, &mouseY);
+			if (button->isMouseOverButton(mouseX, mouseY)) {
+				button->Color = button->firstColor - 50;
+
+				if (glfwGetMouseButton (CurrentWindow, GLFW_MOUSE_BUTTON_1 ) == GLFW_PRESS) {
+					button->Color = button->firstColor - 100;
+					button->isClicked = true;
+				}
+			} else {
+				button->Color = button->firstColor;
+			}
+		}
+	}
+
+	// Do this when the current scene is FINISHED
+	if (state == FINISHED) {
+		this->CanStartBox2D = false;
+		// MAYBE SAVE SCORE
+		// STOP/DELETE THIS->SCENE
+		// START SCENE02
+		// SET 'state' TO START AGAIN
+		// state = START;
 	}
 }
 

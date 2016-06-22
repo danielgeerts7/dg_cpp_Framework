@@ -9,10 +9,29 @@
 #define SCENE_H
 
 // Include standard headers
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <thread>
+
+// Include GLEW
+#include <GL/glew.h>
+
+// Include GLFW
+#include <glfw3.h>
+
+// Include GLM
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/transform.hpp>
+
+// Include standard headers
 #include <string>
 #include <vector>
 
 #include <dg_cpp/gameobject.h>
+#include <dg_cpp/button.h>
 #include <dg_cpp/settings.h>
 #include <dg_cpp/timer.h>
 #include <Box2D.h>
@@ -20,7 +39,7 @@
 class Scene
 {
 public:
-	Scene();
+	Scene(GLFWwindow* currentWindow);
 	~Scene();
 
 	virtual void update(double deltaTime);
@@ -51,6 +70,14 @@ public:
 
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	b2World world = b2World(b2Vec2(0.0f, 1.0f));
+
+	bool CanStartBox2D = false;
+
+	enum gameState {START, FINISHED} ;
+	gameState state = START;
+
+private:
+	GLFWwindow* CurrentWindow;
 };
 
 #endif /* SCENE_H */

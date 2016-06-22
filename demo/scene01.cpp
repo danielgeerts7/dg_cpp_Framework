@@ -8,7 +8,7 @@
 #include "scene01.h"
 
 
-Scene01::Scene01() : Scene()
+Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 {
 	// Creating a new Line
 	defaultObj = new GameObject(STATIC);
@@ -155,6 +155,20 @@ Scene01::Scene01() : Scene()
 	this->addChild(ball);
 	ball->body->SetGravityScale(1.0f);
 	allLocalGameObjects.push_back(ball);
+
+
+	// Creating a new Line
+	StartBox2DBtn = new Button(Point3(23, 219, 36));
+
+	// Adding 4 points to the line, to created a defaultObj
+	StartBox2DBtn->CreateSquare(40, 20);
+
+	StartBox2DBtn->Position = Point2(1200, 50);
+	StartBox2DBtn->Rotation = 0.0f / RAD_TO_DEG;
+	StartBox2DBtn->Scale = Point2(1.0f, 1.0f);
+
+	StartBox2DBtn->filled = true;
+	this->addChild(StartBox2DBtn);
 }
 
 
@@ -183,20 +197,26 @@ Scene01::~Scene01()
 void Scene01::update(double deltaTime) {
 	Scene::update(deltaTime);
 
-	if (ball->Position.y > BasketLeft->Position.y - BasketLeft->GetSquareHeight()){
-		if (ball->Position.y > BasketRigth->Position.y - BasketRigth->GetSquareHeight()) {
-			if (ball->Position.x > BasketBottom->Position.x - BasketBottom->GetSquareWidth()) {
-				if (ball->Position.x < BasketBottom->Position.x + BasketBottom->GetSquareWidth()) {
-					ball->Color = Point2(0, 255, 180);
-					for each (GameObject* test in allLocalGameObjects) {
-						test->Color = Point2(0, 255, 180);
-						test->filled = true;
+	if (state == START) {
+		if (ball->Position.y > BasketLeft->Position.y - BasketLeft->GetSquareHeight()) {
+			if (ball->Position.y > BasketRigth->Position.y - BasketRigth->GetSquareHeight()) {
+				if (ball->Position.x > BasketBottom->Position.x - BasketBottom->GetSquareWidth()) {
+					if (ball->Position.x < BasketBottom->Position.x + BasketBottom->GetSquareWidth()) {
+						ball->Color = Point2(0, 255, 180);
+						for each (GameObject* test in allLocalGameObjects) {
+							test->Color = Point2(0, 255, 180);
+							test->filled = true;
+						}
+						ball->filled = true;
+
+						state = FINISHED;
 					}
-					ball->filled = true;
 				}
 			}
 		}
 	}
 
-	//bottom->body->SetTransform(b2Vec2(bottom->body->GetPosition().x + 0.5f, bottom->body->GetPosition().y), bottom->body->GetAngle());
+	if (StartBox2DBtn->isClicked) {
+		this->CanStartBox2D = true;
+	}
 }

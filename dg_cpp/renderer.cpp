@@ -72,8 +72,10 @@ void Renderer::RenderScene(Scene* scene)
 	// Show deltaTime
 	showFrameRate(1);
 
-	static double vsync = 1.0f / 60.0f;
-	scene->world.Step(vsync, 8, 3);
+	if (scene->CanStartBox2D == true) {
+		static double vsync = 1.0f / 60.0f;
+		scene->world.Step(vsync, 8, 3);
+	}
 
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

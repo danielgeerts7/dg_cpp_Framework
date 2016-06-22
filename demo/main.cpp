@@ -26,7 +26,7 @@ int main(void)
 	//demoTest.TestBox2D();
 	
 	Renderer* renderer = new Renderer();
-	Scene* scene01 = new Scene01();
+	Scene* scene01 = new Scene01(renderer->getCurrentWindow());
 	int currentScene = 0;
 
 	std::vector<Scene*> allScenes;

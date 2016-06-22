@@ -55,6 +55,8 @@ add_definitions(
 
 # dg_cpp library
 add_library(dg_cpp
+	dg_cpp/button.cpp
+	dg_cpp/button.h
 	dg_cpp/camera.cpp
 	dg_cpp/camera.h
 	dg_cpp/gameobject.cpp

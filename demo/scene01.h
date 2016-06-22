@@ -10,15 +10,16 @@
 
 // Include all dg_cpp classes needed in this class
 #include <dg_cpp/scene.h>
-#include <dg_cpp/gameobject.h>
 #include <dg_cpp/line.h>
+#include <dg_cpp/gameobject.h>
+#include <dg_cpp/button.h>
 #include <dg_cpp/pointx.h>
 #include <dg_cpp/settings.h>
 
 class Scene01 : public Scene
 {
 public:
-	Scene01();
+	Scene01(GLFWwindow* currentWindow);
 	~Scene01();
 
 	virtual void update(double deltaTime);
@@ -30,6 +31,8 @@ private:
 	GameObject* BasketLeft;
 	GameObject* BasketRigth;
 	GameObject* BasketBottom;
+
+	Button* StartBox2DBtn;
 
 	std::vector<GameObject*> allLocalGameObjects;
 };
