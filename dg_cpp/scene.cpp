@@ -50,7 +50,7 @@ void Scene::update(double deltaTime) {
 	}
 
 	for each (Button* button in ChildrenInScene) {
-		if (button->isButton) {
+		if (button->IsButton()) {
 			double mouseX, mouseY;
 			glfwGetCursorPos(CurrentWindow, &mouseX, &mouseY);
 			if (button->isMouseOverButton(mouseX, mouseY)) {
