@@ -158,7 +158,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	StartBox2DBtn = new Button(Point3(23, 219, 36));
 
 	// Adding 4 points to the line, to created a defaultObj
-	StartBox2DBtn->CreateSquare(40, 20);
+	StartBox2DBtn->CreateSquare(30, 30);
 
 	StartBox2DBtn->Position = Point2(1200, 50);
 	StartBox2DBtn->Rotation = 0.0f / RAD_TO_DEG;
@@ -166,6 +166,15 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 
 	StartBox2DBtn->filled = true;
 	this->addChild(StartBox2DBtn);
+
+	GameObject* temp = new GameObject(STATIC);
+	temp->CreateCircle(20, 3);
+	temp->Position = StartBox2DBtn->Position;
+	temp->Rotation= StartBox2DBtn->Rotation;
+	temp->Scale = StartBox2DBtn->Scale;
+	temp->filled = true;
+	temp->Color = Point3(255, 255, 255);
+	this->addChild(temp);
 }
 
 
