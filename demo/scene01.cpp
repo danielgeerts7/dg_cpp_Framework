@@ -20,7 +20,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	defaultObj->Rotation = 25.0f / RAD_TO_DEG;
 	defaultObj->Scale = Point2(1.0f, 1.0f);
 
-	defaultObj->Color = Point3(0, 255, 255);
+	defaultObj->Color = Point3(255, 255, 0);
 	defaultObj->filled = false;
 
 	// Add the child to the this scene
@@ -54,7 +54,24 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	defaultObj->Rotation = 165.0f / RAD_TO_DEG;
 	defaultObj->Scale = Point2(1.0f, 1.0f);
 
-	defaultObj->Color = Point3(0, 148, 189);
+	defaultObj->Color = Point3(255, 255, 0);
+	defaultObj->filled = false;
+
+	// Add the child to the this scene
+	this->addChild(defaultObj);
+	allLocalGameObjects.push_back(defaultObj);
+
+	// Creating a new Line
+	defaultObj = new GameObject(STATIC);
+
+	// Adding 4 points to the line, to created a defaultObj
+	defaultObj->CreateSquare(10, 150);
+
+	defaultObj->Position = Point2(420, 550);
+	defaultObj->Rotation = 0.0f / RAD_TO_DEG;
+	defaultObj->Scale = Point2(1.0f, 1.0f);
+
+	defaultObj->Color = Point3(255, 255, 0);
 	defaultObj->filled = false;
 
 	// Add the child to the this scene
@@ -65,13 +82,13 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	BasketLeft = new GameObject(STATIC);
 
 	// Adding 4 points to the line, to created a defaultObj
-	BasketLeft->CreateSquare(120, 10);
+	BasketLeft->CreateSquare(25, 10);
 
-	BasketLeft->Position = Point2(504, 600);
+	BasketLeft->Position = Point2(504, 695);
 	BasketLeft->Rotation = 90.0f / RAD_TO_DEG;
 	BasketLeft->Scale = Point2(1.0f, 1.0f);
 
-	BasketLeft->Color = Point3(255, 140, 0);
+	BasketLeft->Color = Point3(0, 255, 255);
 	BasketLeft->filled = true;
 	this->addChild(BasketLeft);
 	allLocalGameObjects.push_back(BasketLeft);
@@ -86,7 +103,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	BasketRigth->Rotation = 90.0f / RAD_TO_DEG;
 	BasketRigth->Scale = Point2(1.0f, 1.0f);
 
-	BasketRigth->Color = Point3(255, 140, 0);
+	BasketRigth->Color = Point3(0, 255, 255);
 	BasketRigth->filled = true;
 	this->addChild(BasketRigth);
 	BasketRigth->body->SetGravityScale(2);
@@ -102,7 +119,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	BasketBottom->Rotation = 0.0f / RAD_TO_DEG;
 	BasketBottom->Scale = Point2(1.0f, 1.0f);
 
-	BasketBottom->Color = Point3(255, 140, 0);
+	BasketBottom->Color = Point3(0, 255, 255);
 	BasketBottom->filled = true;
 
 	// Add the child to the this scene
@@ -116,7 +133,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 	ball->Rotation = 0.0f;
 	ball->Scale = Point2(1.0f, 1.0f);
 	ball->Color = Point3(255, 255, 255);
-	ball->filled = false;
+	ball->filled = true;
 
 	this->addChild(ball);
 	ball->body->SetGravityScale(1.0f);
@@ -125,7 +142,7 @@ Scene01::Scene01(GLFWwindow* currentWindow) : Scene(currentWindow)
 
 /** CREATING ALL DRAGGABLE GAME OBJECTS  **/
 	// Creating a new Line
-	draggableGameObject1 = new DraggableGameObject(Point3(255, 140, 0));
+	draggableGameObject1 = new DraggableGameObject(Point3(255, 0, 255));
 
 	// Adding 4 points to the line, to created a defaultObj
 	draggableGameObject1->CreateSquare(10, 25);
@@ -232,9 +249,9 @@ void Scene01::update(double deltaTime) {
 			if (ball->Position.y > BasketRigth->Position.y - BasketRigth->GetSquareHeight()) {
 				if (ball->Position.x > BasketBottom->Position.x - BasketBottom->GetSquareWidth()) {
 					if (ball->Position.x < BasketBottom->Position.x + BasketBottom->GetSquareWidth()) {
-						ball->Color = Point2(0, 255, 180);
+						ball->Color = Point2(255, 255, 255);
 						for each (GameObject* test in allLocalGameObjects) {
-							test->Color = Point2(0, 255, 180);
+							test->Color = Point2(255, 255, 255);
 							test->filled = true;
 						}
 						ball->filled = true;
